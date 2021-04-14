@@ -1,0 +1,524 @@
+python3 UCT_iterated.py -nu 20 -ng 1000
+
+Game 1 --> nan | Table size: 0 | Last result None
+Move 50        Elapsed time: 0.612 mins
+Move 100        Elapsed time: 1.038 mins
+Move 150        Elapsed time: 1.397 mins
+Move 200        Elapsed time: 1.729 mins
+Move 250        Elapsed time: 2.021 mins
+Game 2 --> 0.500 | Table size: 5660 | Last result 0.5
+Move 50        Elapsed time: 2.937 mins
+Move 100        Elapsed time: 3.476 mins
+Move 150        Elapsed time: 3.971 mins
+Move 200        Elapsed time: 4.369 mins
+Move 250        Elapsed time: 4.669 mins
+Move 300        Elapsed time: 4.850 mins
+Game 3 --> 0.500 | Table size: 12022 | Last result 0.5
+Move 50        Elapsed time: 5.500 mins
+Move 100        Elapsed time: 5.975 mins
+Move 150        Elapsed time: 6.436 mins
+Move 200        Elapsed time: 6.934 mins
+Move 250        Elapsed time: 7.326 mins
+Game 4 --> 0.500 | Table size: 17768 | Last result 0.5
+Move 50        Elapsed time: 8.148 mins
+Move 100        Elapsed time: 8.708 mins
+Move 150        Elapsed time: 9.167 mins
+Move 200        Elapsed time: 9.516 mins
+Game 5 --> 0.500 | Table size: 22030 | Last result 0.5
+Move 50        Elapsed time: 10.156 mins
+Move 100        Elapsed time: 10.734 mins
+Move 150        Elapsed time: 11.256 mins
+Move 200        Elapsed time: 11.528 mins
+Game 6 --> 0.500 | Table size: 25998 | Last result 0.5
+Move 50        Elapsed time: 12.108 mins
+Move 100        Elapsed time: 12.573 mins
+Move 150        Elapsed time: 12.924 mins
+Move 200        Elapsed time: 13.163 mins
+Game 7 --> 0.500 | Table size: 30781 | Last result 0.5
+Move 50        Elapsed time: 13.863 mins
+Move 100        Elapsed time: 14.315 mins
+Game 8 --> 0.571 | Table size: 32839 | Last result 1.0
+Move 50        Elapsed time: 14.963 mins
+Move 100        Elapsed time: 15.419 mins
+Move 150        Elapsed time: 15.790 mins
+Move 200        Elapsed time: 16.076 mins
+Game 9 --> 0.562 | Table size: 37636 | Last result 0.5
+Move 50        Elapsed time: 16.932 mins
+Move 100        Elapsed time: 17.475 mins
+Move 150        Elapsed time: 17.915 mins
+Move 200        Elapsed time: 18.342 mins
+Move 250        Elapsed time: 18.723 mins
+Move 300        Elapsed time: 19.063 mins
+Move 350        Elapsed time: 19.252 mins
+Game 10 --> 0.556 | Table size: 44891 | Last result 0.5
+Move 50        Elapsed time: 19.907 mins
+Move 100        Elapsed time: 20.449 mins
+Move 150        Elapsed time: 20.907 mins
+Move 200        Elapsed time: 21.310 mins
+Move 250        Elapsed time: 21.566 mins
+Game 11 --> 0.550 | Table size: 50073 | Last result 0.5 | 10-games mean 0.55
+Move 50        Elapsed time: 22.219 mins
+Move 100        Elapsed time: 22.732 mins
+Move 150        Elapsed time: 23.198 mins
+Move 200        Elapsed time: 23.631 mins
+Move 250        Elapsed time: 24.030 mins
+Move 300        Elapsed time: 24.360 mins
+Game 12 --> 0.545 | Table size: 56736 | Last result 0.5 | 10-games mean 0.55
+Move 50        Elapsed time: 25.222 mins
+Move 100        Elapsed time: 25.740 mins
+Move 150        Elapsed time: 26.136 mins
+Game 13 --> 0.500 | Table size: 60164 | Last result 0.0 | 10-games mean 0.5
+Move 50        Elapsed time: 26.876 mins
+Move 100        Elapsed time: 27.277 mins
+Move 150        Elapsed time: 27.676 mins
+Move 200        Elapsed time: 28.000 mins
+Game 14 --> 0.500 | Table size: 64772 | Last result 0.5 | 10-games mean 0.5
+Move 50        Elapsed time: 28.703 mins
+Move 100        Elapsed time: 29.208 mins
+Game 15 --> 0.464 | Table size: 67332 | Last result 0.0 | 10-games mean 0.45
+Move 50        Elapsed time: 29.992 mins
+Move 100        Elapsed time: 30.422 mins
+Move 150        Elapsed time: 30.702 mins
+Move 200        Elapsed time: 30.823 mins
+Game 16 --> 0.467 | Table size: 71734 | Last result 0.5 | 10-games mean 0.45
+Move 50        Elapsed time: 31.483 mins
+Game 17 --> 0.438 | Table size: 73034 | Last result 0.0 | 10-games mean 0.4
+Move 50        Elapsed time: 32.265 mins
+Move 100        Elapsed time: 32.811 mins
+Move 150        Elapsed time: 33.286 mins
+Move 200        Elapsed time: 33.703 mins
+Move 250        Elapsed time: 34.071 mins
+Game 18 --> 0.441 | Table size: 78651 | Last result 0.5 | 10-games mean 0.35
+Move 50        Elapsed time: 34.831 mins
+Move 100        Elapsed time: 35.391 mins
+Move 150        Elapsed time: 35.853 mins
+Move 200        Elapsed time: 36.270 mins
+Move 250        Elapsed time: 36.644 mins
+Move 300        Elapsed time: 36.925 mins
+Move 350        Elapsed time: 37.123 mins
+Move 400        Elapsed time: 37.288 mins
+Game 19 --> 0.444 | Table size: 86805 | Last result 0.5 | 10-games mean 0.35
+Move 50        Elapsed time: 38.030 mins
+Move 100        Elapsed time: 38.549 mins
+Move 150        Elapsed time: 38.954 mins
+Move 200        Elapsed time: 39.306 mins
+Move 250        Elapsed time: 39.554 mins
+Game 20 --> 0.447 | Table size: 92531 | Last result 0.5 | 10-games mean 0.35
+Move 50        Elapsed time: 40.310 mins
+Move 100        Elapsed time: 40.931 mins
+Move 150        Elapsed time: 41.587 mins
+Move 200        Elapsed time: 42.185 mins
+Move 250        Elapsed time: 42.753 mins
+Move 300        Elapsed time: 43.205 mins
+Move 350        Elapsed time: 43.549 mins
+Game 21 --> 0.450 | Table size: 99818 | Last result 0.5 | 10-games mean 0.35
+Move 50        Elapsed time: 44.189 mins
+Move 100        Elapsed time: 44.655 mins
+Move 150        Elapsed time: 45.009 mins
+Move 200        Elapsed time: 45.319 mins
+Move 250        Elapsed time: 45.579 mins
+Game 22 --> 0.452 | Table size: 105032 | Last result 0.5 | 10-games mean 0.35
+Move 50        Elapsed time: 46.265 mins
+Game 23 --> 0.432 | Table size: 106552 | Last result 0.0 | 10-games mean 0.35
+Move 50        Elapsed time: 47.204 mins
+Move 100        Elapsed time: 47.824 mins
+Move 150        Elapsed time: 48.429 mins
+Move 200        Elapsed time: 49.014 mins
+Move 250        Elapsed time: 49.599 mins
+Move 300        Elapsed time: 49.974 mins
+Move 350        Elapsed time: 50.184 mins
+Game 24 --> 0.435 | Table size: 113878 | Last result 0.5 | 10-games mean 0.35
+Move 50        Elapsed time: 50.839 mins
+Move 100        Elapsed time: 51.290 mins
+Move 150        Elapsed time: 51.588 mins
+Move 200        Elapsed time: 51.846 mins
+Move 250        Elapsed time: 52.064 mins
+Move 300        Elapsed time: 52.304 mins
+Move 350        Elapsed time: 52.505 mins
+Game 25 --> 0.438 | Table size: 121594 | Last result 0.5 | 10-games mean 0.4
+Move 50        Elapsed time: 53.246 mins
+Move 100        Elapsed time: 53.845 mins
+Move 150        Elapsed time: 54.362 mins
+Move 200        Elapsed time: 54.744 mins
+Game 26 --> 0.440 | Table size: 126400 | Last result 0.5 | 10-games mean 0.4
+Move 50        Elapsed time: 55.531 mins
+Move 100        Elapsed time: 56.082 mins
+Move 150        Elapsed time: 56.580 mins
+Game 27 --> 0.442 | Table size: 129615 | Last result 0.5 | 10-games mean 0.45
+Move 50        Elapsed time: 57.317 mins
+Move 100        Elapsed time: 57.865 mins
+Move 150        Elapsed time: 58.326 mins
+Move 200        Elapsed time: 58.888 mins
+Game 28 --> 0.426 | Table size: 133734 | Last result 0.0 | 10-games mean 0.4
+Move 50        Elapsed time: 59.623 mins
+Move 100        Elapsed time: 60.223 mins
+Move 150        Elapsed time: 60.770 mins
+Move 200        Elapsed time: 61.316 mins
+Move 250        Elapsed time: 61.849 mins
+Move 300        Elapsed time: 62.345 mins
+Move 350        Elapsed time: 62.824 mins
+Move 400        Elapsed time: 63.170 mins
+Move 450        Elapsed time: 63.446 mins
+Game 29 --> 0.429 | Table size: 142868 | Last result 0.5 | 10-games mean 0.4
+Move 50        Elapsed time: 64.099 mins
+Move 100        Elapsed time: 64.608 mins
+Move 150        Elapsed time: 65.041 mins
+Move 200        Elapsed time: 65.496 mins
+Move 250        Elapsed time: 65.907 mins
+Move 300        Elapsed time: 66.208 mins
+Game 30 --> 0.431 | Table size: 149019 | Last result 0.5 | 10-games mean 0.4
+Move 50        Elapsed time: 66.865 mins
+Move 100        Elapsed time: 67.391 mins
+Move 150        Elapsed time: 67.923 mins
+Move 200        Elapsed time: 68.355 mins
+Move 250        Elapsed time: 68.765 mins
+Game 31 --> 0.433 | Table size: 154074 | Last result 0.5 | 10-games mean 0.4
+Move 50        Elapsed time: 69.386 mins
+Move 100        Elapsed time: 69.923 mins
+Move 150        Elapsed time: 70.313 mins
+Move 200        Elapsed time: 70.594 mins
+Game 32 --> 0.435 | Table size: 159025 | Last result 0.5 | 10-games mean 0.4
+Move 50        Elapsed time: 71.396 mins
+Move 100        Elapsed time: 71.966 mins
+Move 150        Elapsed time: 72.482 mins
+Move 200        Elapsed time: 72.990 mins
+Move 250        Elapsed time: 73.430 mins
+Move 300        Elapsed time: 73.758 mins
+Move 350        Elapsed time: 73.936 mins
+Game 33 --> 0.438 | Table size: 166046 | Last result 0.5 | 10-games mean 0.45
+Move 50        Elapsed time: 74.562 mins
+Game 34 --> 0.424 | Table size: 167206 | Last result 0.0 | 10-games mean 0.4
+Move 50        Elapsed time: 75.212 mins
+Move 100        Elapsed time: 75.717 mins
+Move 150        Elapsed time: 76.067 mins
+Move 200        Elapsed time: 76.255 mins
+Move 250        Elapsed time: 76.413 mins
+Game 35 --> 0.426 | Table size: 172245 | Last result 0.5 | 10-games mean 0.4
+Move 50        Elapsed time: 77.029 mins
+Move 100        Elapsed time: 77.525 mins
+Move 150        Elapsed time: 77.950 mins
+Move 200        Elapsed time: 78.305 mins
+Game 36 --> 0.429 | Table size: 176344 | Last result 0.5 | 10-games mean 0.4
+Move 50        Elapsed time: 78.958 mins
+Move 100        Elapsed time: 79.540 mins
+Move 150        Elapsed time: 80.053 mins
+Move 200        Elapsed time: 80.469 mins
+Move 250        Elapsed time: 80.878 mins
+Game 37 --> 0.431 | Table size: 181696 | Last result 0.5 | 10-games mean 0.4
+Move 50        Elapsed time: 81.616 mins
+Move 100        Elapsed time: 82.141 mins
+Game 38 --> 0.432 | Table size: 184094 | Last result 0.5 | 10-games mean 0.45
+Move 50        Elapsed time: 82.913 mins
+Move 100        Elapsed time: 83.363 mins
+Game 39 --> 0.447 | Table size: 186126 | Last result 1.0 | 10-games mean 0.5
+Move 50        Elapsed time: 84.020 mins
+Move 100        Elapsed time: 84.447 mins
+Game 40 --> 0.436 | Table size: 188126 | Last result 0.0 | 10-games mean 0.45
+Move 50        Elapsed time: 85.052 mins
+Move 100        Elapsed time: 85.571 mins
+Move 150        Elapsed time: 86.104 mins
+Move 200        Elapsed time: 86.577 mins
+Game 41 --> 0.425 | Table size: 192373 | Last result 0.0 | 10-games mean 0.4
+Move 50        Elapsed time: 87.347 mins
+Move 100        Elapsed time: 87.886 mins
+Move 150        Elapsed time: 88.336 mins
+Move 200        Elapsed time: 88.649 mins
+Game 42 --> 0.427 | Table size: 197080 | Last result 0.5 | 10-games mean 0.4
+Move 50        Elapsed time: 89.436 mins
+Move 100        Elapsed time: 89.911 mins
+Move 150        Elapsed time: 90.317 mins
+Game 43 --> 0.417 | Table size: 200120 | Last result 0.0 | 10-games mean 0.35
+Move 50        Elapsed time: 90.953 mins
+Move 100        Elapsed time: 91.455 mins
+Move 150        Elapsed time: 91.992 mins
+Move 200        Elapsed time: 92.403 mins
+Move 250        Elapsed time: 92.599 mins
+Game 44 --> 0.419 | Table size: 205369 | Last result 0.5 | 10-games mean 0.4
+Move 50        Elapsed time: 93.228 mins
+Game 45 --> 0.409 | Table size: 206669 | Last result 0.0 | 10-games mean 0.35
+Move 50        Elapsed time: 93.980 mins
+Move 100        Elapsed time: 94.386 mins
+Move 150        Elapsed time: 94.673 mins
+Move 200        Elapsed time: 94.863 mins
+Move 250        Elapsed time: 95.036 mins
+Game 46 --> 0.411 | Table size: 211801 | Last result 0.5 | 10-games mean 0.35
+Move 50        Elapsed time: 95.687 mins
+Move 100        Elapsed time: 96.262 mins
+Game 47 --> 0.402 | Table size: 214241 | Last result 0.0 | 10-games mean 0.3
+Move 50        Elapsed time: 97.063 mins
+Move 100        Elapsed time: 97.575 mins
+Game 48 --> 0.394 | Table size: 216299 | Last result 0.0 | 10-games mean 0.25
+Game 49 --> 0.385 | Table size: 217139 | Last result 0.0 | 10-games mean 0.15
+Move 50        Elapsed time: 98.749 mins
+Move 100        Elapsed time: 99.222 mins
+Move 150        Elapsed time: 99.667 mins
+Move 200        Elapsed time: 100.040 mins
+Move 250        Elapsed time: 100.372 mins
+Move 300        Elapsed time: 100.611 mins
+Game 50 --> 0.388 | Table size: 223301 | Last result 0.5 | 10-games mean 0.2
+Move 50        Elapsed time: 101.229 mins
+Move 100        Elapsed time: 101.645 mins
+Move 150        Elapsed time: 102.005 mins
+Move 200        Elapsed time: 102.298 mins
+Move 250        Elapsed time: 102.575 mins
+Game 51 --> 0.390 | Table size: 229231 | Last result 0.5 | 10-games mean 0.25
+Move 50        Elapsed time: 103.329 mins
+Move 100        Elapsed time: 103.845 mins
+Move 150        Elapsed time: 104.238 mins
+Move 200        Elapsed time: 104.436 mins
+Game 52 --> 0.392 | Table size: 233737 | Last result 0.5 | 10-games mean 0.25
+Move 50        Elapsed time: 111.445 mins
+Move 100        Elapsed time: 111.879 mins
+Move 150        Elapsed time: 112.285 mins
+Move 200        Elapsed time: 112.699 mins
+Move 250        Elapsed time: 113.040 mins
+Game 53 --> 0.394 | Table size: 238892 | Last result 0.5 | 10-games mean 0.3
+Move 50        Elapsed time: 113.694 mins
+Move 100        Elapsed time: 114.221 mins
+Move 150        Elapsed time: 114.687 mins
+Move 200        Elapsed time: 115.069 mins
+Move 250        Elapsed time: 115.495 mins
+Move 300        Elapsed time: 115.836 mins
+Game 54 --> 0.396 | Table size: 245299 | Last result 0.5 | 10-games mean 0.3
+Move 50        Elapsed time: 116.575 mins
+Move 100        Elapsed time: 117.109 mins
+Game 55 --> 0.389 | Table size: 247779 | Last result 0.0 | 10-games mean 0.3
+Move 50        Elapsed time: 117.961 mins
+Move 100        Elapsed time: 118.439 mins
+Game 56 --> 0.382 | Table size: 250599 | Last result 0.0 | 10-games mean 0.25
+Move 50        Elapsed time: 119.415 mins
+Move 100        Elapsed time: 119.823 mins
+Move 150        Elapsed time: 119.981 mins
+Game 57 --> 0.384 | Table size: 253767 | Last result 0.5 | 10-games mean 0.3
+Move 50        Elapsed time: 120.572 mins
+Game 58 --> 0.377 | Table size: 255507 | Last result 0.0 | 10-games mean 0.3
+Move 50        Elapsed time: 121.451 mins
+Move 100        Elapsed time: 121.919 mins
+Move 150        Elapsed time: 122.275 mins
+Move 200        Elapsed time: 122.601 mins
+Game 59 --> 0.379 | Table size: 260020 | Last result 0.5 | 10-games mean 0.35
+Move 50        Elapsed time: 123.330 mins
+Move 100        Elapsed time: 123.786 mins
+Move 150        Elapsed time: 124.168 mins
+Move 200        Elapsed time: 124.495 mins
+Move 250        Elapsed time: 124.829 mins
+Move 300        Elapsed time: 124.998 mins
+Game 60 --> 0.381 | Table size: 266771 | Last result 0.5 | 10-games mean 0.35
+Move 50        Elapsed time: 125.730 mins
+Move 100        Elapsed time: 126.330 mins
+Game 61 --> 0.375 | Table size: 268831 | Last result 0.0 | 10-games mean 0.3
+Move 50        Elapsed time: 127.035 mins
+Game 62 --> 0.369 | Table size: 270551 | Last result 0.0 | 10-games mean 0.25
+Move 50        Elapsed time: 128.026 mins
+Game 63 --> 0.363 | Table size: 271611 | Last result 0.0 | 10-games mean 0.2
+Move 50        Elapsed time: 128.724 mins
+Move 100        Elapsed time: 129.315 mins
+Move 150        Elapsed time: 129.911 mins
+Move 200        Elapsed time: 130.387 mins
+Move 250        Elapsed time: 130.708 mins
+Move 300        Elapsed time: 130.950 mins
+Move 350        Elapsed time: 131.206 mins
+Game 64 --> 0.365 | Table size: 279314 | Last result 0.5 | 10-games mean 0.2
+Move 50        Elapsed time: 132.042 mins
+Move 100        Elapsed time: 132.620 mins
+Game 65 --> 0.359 | Table size: 281474 | Last result 0.0 | 10-games mean 0.2
+Move 50        Elapsed time: 133.284 mins
+Move 100        Elapsed time: 133.774 mins
+Move 150        Elapsed time: 134.212 mins
+Move 200        Elapsed time: 134.620 mins
+Move 250        Elapsed time: 135.027 mins
+Move 300        Elapsed time: 135.265 mins
+Game 66 --> 0.362 | Table size: 287633 | Last result 0.5 | 10-games mean 0.25
+Move 50        Elapsed time: 135.923 mins
+Move 100        Elapsed time: 136.478 mins
+Move 150        Elapsed time: 136.931 mins
+Move 200        Elapsed time: 137.336 mins
+Game 67 --> 0.364 | Table size: 292562 | Last result 0.5 | 10-games mean 0.25
+Move 50        Elapsed time: 138.314 mins
+Move 100        Elapsed time: 138.791 mins
+Move 150        Elapsed time: 139.282 mins
+Move 200        Elapsed time: 139.556 mins
+Move 250        Elapsed time: 139.692 mins
+Game 68 --> 0.366 | Table size: 297644 | Last result 0.5 | 10-games mean 0.3
+Move 50        Elapsed time: 140.323 mins
+Move 100        Elapsed time: 140.827 mins
+Move 150        Elapsed time: 141.306 mins
+Move 200        Elapsed time: 141.715 mins
+Move 250        Elapsed time: 142.018 mins
+Move 300        Elapsed time: 142.313 mins
+Game 69 --> 0.368 | Table size: 303919 | Last result 0.5 | 10-games mean 0.3
+Move 50        Elapsed time: 143.059 mins
+Move 100        Elapsed time: 143.665 mins
+Move 150        Elapsed time: 144.194 mins
+Game 70 --> 0.362 | Table size: 307317 | Last result 0.0 | 10-games mean 0.25
+Move 50        Elapsed time: 145.038 mins
+Move 100        Elapsed time: 145.571 mins
+Move 150        Elapsed time: 146.067 mins
+Move 200        Elapsed time: 146.435 mins
+Move 250        Elapsed time: 146.782 mins
+Move 300        Elapsed time: 147.046 mins
+Game 71 --> 0.364 | Table size: 313598 | Last result 0.5 | 10-games mean 0.3
+Move 50        Elapsed time: 147.739 mins
+Move 100        Elapsed time: 148.215 mins
+Game 72 --> 0.359 | Table size: 315638 | Last result 0.0 | 10-games mean 0.3
+Move 50        Elapsed time: 148.839 mins
+Move 100        Elapsed time: 149.398 mins
+Move 150        Elapsed time: 149.761 mins
+Game 73 --> 0.361 | Table size: 319489 | Last result 0.5 | 10-games mean 0.35
+Move 50        Elapsed time: 150.501 mins
+Game 74 --> 0.370 | Table size: 320865 | Last result 1.0 | 10-games mean 0.4
+Move 50        Elapsed time: 151.342 mins
+Move 100        Elapsed time: 151.859 mins
+Move 150        Elapsed time: 152.318 mins
+Move 200        Elapsed time: 152.830 mins
+Move 250        Elapsed time: 153.109 mins
+Move 300        Elapsed time: 153.348 mins
+Game 75 --> 0.372 | Table size: 326961 | Last result 0.5 | 10-games mean 0.45
+Move 50        Elapsed time: 153.970 mins
+Move 100        Elapsed time: 154.405 mins
+Game 76 --> 0.373 | Table size: 329851 | Last result 0.5 | 10-games mean 0.45
+Move 50        Elapsed time: 155.276 mins
+Move 100        Elapsed time: 155.730 mins
+Move 150        Elapsed time: 156.003 mins
+Move 200        Elapsed time: 156.151 mins
+Game 77 --> 0.375 | Table size: 334137 | Last result 0.5 | 10-games mean 0.45
+Move 50        Elapsed time: 156.808 mins
+Move 100        Elapsed time: 157.370 mins
+Move 150        Elapsed time: 157.946 mins
+Game 78 --> 0.377 | Table size: 337947 | Last result 0.5 | 10-games mean 0.45
+Move 50        Elapsed time: 158.915 mins
+Move 100        Elapsed time: 159.476 mins
+Move 150        Elapsed time: 159.973 mins
+Move 200        Elapsed time: 160.432 mins
+Move 250        Elapsed time: 160.755 mins
+Move 300        Elapsed time: 160.951 mins
+Game 79 --> 0.378 | Table size: 343307 | Last result 0.5 | 10-games mean 0.45
+Move 50        Elapsed time: 161.598 mins
+Move 100        Elapsed time: 162.049 mins
+Move 150        Elapsed time: 162.400 mins
+Game 80 --> 0.373 | Table size: 346566 | Last result 0.0 | 10-games mean 0.45
+Move 50        Elapsed time: 162.976 mins
+Game 81 --> 0.369 | Table size: 348366 | Last result 0.0 | 10-games mean 0.4
+Move 50        Elapsed time: 163.964 mins
+Move 100        Elapsed time: 164.505 mins
+Move 150        Elapsed time: 165.071 mins
+Move 200        Elapsed time: 165.554 mins
+Move 250        Elapsed time: 166.042 mins
+Move 300        Elapsed time: 166.585 mins
+Move 350        Elapsed time: 167.149 mins
+Move 400        Elapsed time: 167.594 mins
+Move 450        Elapsed time: 167.927 mins
+Move 500        Elapsed time: 168.127 mins
+Game 82 --> 0.370 | Table size: 358507 | Last result 0.5 | 10-games mean 0.45
+Move 50        Elapsed time: 168.742 mins
+Move 100        Elapsed time: 169.257 mins
+Move 150        Elapsed time: 169.847 mins
+Move 200        Elapsed time: 170.317 mins
+Move 250        Elapsed time: 170.779 mins
+Game 83 --> 0.372 | Table size: 364370 | Last result 0.5 | 10-games mean 0.45
+Move 50        Elapsed time: 171.574 mins
+Move 100        Elapsed time: 172.112 mins
+Move 150        Elapsed time: 172.531 mins
+Game 84 --> 0.367 | Table size: 368089 | Last result 0.0 | 10-games mean 0.35
+Move 50        Elapsed time: 173.340 mins
+Move 100        Elapsed time: 173.882 mins
+Move 150        Elapsed time: 174.275 mins
+Game 85 --> 0.363 | Table size: 371289 | Last result 0.0 | 10-games mean 0.3
+Move 50        Elapsed time: 174.929 mins
+Move 100        Elapsed time: 175.435 mins
+Move 150        Elapsed time: 175.773 mins
+Game 86 --> 0.365 | Table size: 374497 | Last result 0.5 | 10-games mean 0.3
+Move 50        Elapsed time: 176.395 mins
+Move 100        Elapsed time: 176.934 mins
+Move 150        Elapsed time: 177.532 mins
+Move 200        Elapsed time: 178.033 mins
+Move 250        Elapsed time: 178.572 mins
+Game 87 --> 0.366 | Table size: 379607 | Last result 0.5 | 10-games mean 0.3
+Move 50        Elapsed time: 179.207 mins
+Move 100        Elapsed time: 179.708 mins
+Move 150        Elapsed time: 180.228 mins
+Move 200        Elapsed time: 180.699 mins
+Move 250        Elapsed time: 181.203 mins
+Move 300        Elapsed time: 181.585 mins
+Move 350        Elapsed time: 182.011 mins
+Game 88 --> 0.368 | Table size: 387300 | Last result 0.5 | 10-games mean 0.3
+Move 50        Elapsed time: 182.808 mins
+Move 100        Elapsed time: 183.280 mins
+Move 150        Elapsed time: 183.712 mins
+Game 89 --> 0.369 | Table size: 391266 | Last result 0.5 | 10-games mean 0.3
+Move 50        Elapsed time: 184.711 mins
+Move 100        Elapsed time: 185.231 mins
+Move 150        Elapsed time: 185.666 mins
+Move 200        Elapsed time: 186.052 mins
+Game 90 --> 0.371 | Table size: 395405 | Last result 0.5 | 10-games mean 0.35
+Move 50        Elapsed time: 186.694 mins
+Move 100        Elapsed time: 187.216 mins
+Move 150        Elapsed time: 187.703 mins
+Game 91 --> 0.378 | Table size: 398695 | Last result 1.0 | 10-games mean 0.45
+Move 50        Elapsed time: 188.427 mins
+Move 100        Elapsed time: 188.991 mins
+Move 150        Elapsed time: 189.444 mins
+Game 92 --> 0.374 | Table size: 401715 | Last result 0.0 | 10-games mean 0.4
+Move 50        Elapsed time: 190.093 mins
+Move 100        Elapsed time: 190.459 mins
+Move 150        Elapsed time: 190.730 mins
+Game 93 --> 0.375 | Table size: 405216 | Last result 0.5 | 10-games mean 0.4
+Move 50        Elapsed time: 191.372 mins
+Move 100        Elapsed time: 191.833 mins
+Move 150        Elapsed time: 192.128 mins
+Move 200        Elapsed time: 192.403 mins
+Move 250        Elapsed time: 192.727 mins
+Move 300        Elapsed time: 193.076 mins
+Move 350        Elapsed time: 193.418 mins
+Game 94 --> 0.376 | Table size: 412692 | Last result 0.5 | 10-games mean 0.45
+Move 50        Elapsed time: 194.145 mins
+Move 100        Elapsed time: 194.651 mins
+Move 150        Elapsed time: 195.092 mins
+Move 200        Elapsed time: 195.440 mins
+Move 250        Elapsed time: 195.725 mins
+Move 300        Elapsed time: 195.953 mins
+Game 95 --> 0.378 | Table size: 419200 | Last result 0.5 | 10-games mean 0.5
+Move 50        Elapsed time: 196.558 mins
+Move 100        Elapsed time: 197.013 mins
+Move 150        Elapsed time: 197.385 mins
+Move 200        Elapsed time: 197.853 mins
+Move 250        Elapsed time: 198.205 mins
+Move 300        Elapsed time: 198.512 mins
+Game 96 --> 0.379 | Table size: 426079 | Last result 0.5 | 10-games mean 0.5
+Move 50        Elapsed time: 199.251 mins
+Move 100        Elapsed time: 199.699 mins
+Move 150        Elapsed time: 200.108 mins
+Game 97 --> 0.380 | Table size: 429756 | Last result 0.5 | 10-games mean 0.5
+Move 50        Elapsed time: 200.911 mins
+Move 100        Elapsed time: 201.405 mins
+Move 150        Elapsed time: 201.968 mins
+Move 200        Elapsed time: 202.353 mins
+Move 250        Elapsed time: 202.710 mins
+Move 300        Elapsed time: 203.108 mins
+Move 350        Elapsed time: 203.454 mins
+Move 400        Elapsed time: 203.791 mins
+Move 450        Elapsed time: 204.007 mins
+Game 98 --> 0.381 | Table size: 438910 | Last result 0.5 | 10-games mean 0.5
+Move 50        Elapsed time: 204.622 mins
+Move 100        Elapsed time: 205.190 mins
+Move 150        Elapsed time: 205.708 mins
+Move 200        Elapsed time: 205.973 mins
+Game 99 --> 0.378 | Table size: 443053 | Last result 0.0 | 10-games mean 0.45
+Move 50        Elapsed time: 206.600 mins
+Move 100        Elapsed time: 207.117 mins
+Move 150        Elapsed time: 207.721 mins
+Move 200        Elapsed time: 208.237 mins
+Move 250        Elapsed time: 208.785 mins
+Game 100 --> 0.379 | Table size: 448148 | Last result 0.5 | 10-games mean 0.45
+Move 50        Elapsed time: 209.377 mins
+Move 100        Elapsed time: 209.854 mins
+Move 150        Elapsed time: 210.329 mins
+Move 200        Elapsed time: 210.895 mins
+Move 250        Elapsed time: 211.275 mins
+Game 101 --> 0.380 | Table size: 453377 | Last result 0.5 | 10-games mean 0.4
+Move 50        Elapsed time: 212.037 mins
+Move 100        Elapsed time: 212.482 mins
+Move 150        Elapsed time: 212.802 mins
+Move 200        Elapsed time: 213.070 mins
+Move 250        Elapsed time: 213.278 mins
+Move 300        Elapsed time: 213.461 mins
