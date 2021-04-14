@@ -4,3 +4,8 @@ In this repo I will share the code for some implementations of Monte Carlo Tree 
 
 
 Useful notebooks will be stored in the `/notebooks` folder.
+
+
+## TO-DO
+
+- Implement `random_move` as a ChessBoard method.
