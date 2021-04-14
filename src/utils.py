@@ -14,8 +14,8 @@ def save_table(filename, table_dict):
 def load_previous_table(previous_training_path):
     try:
         with open(previous_training_path, 'r+') as fp:
-            Table = json.load(fp)
+            table = json.load(fp)
     except Exception as exc:
         print(f"Couldn't load the previous training due to {exc}")
-        Table = dict()
-    return Table
+        table = dict()
+    return table

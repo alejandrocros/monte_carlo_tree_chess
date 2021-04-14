@@ -142,3 +142,5 @@ partial_results/
 
 final_results/
 .final_results
+
+.vscode/
