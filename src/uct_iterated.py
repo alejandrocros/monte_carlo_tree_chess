@@ -58,9 +58,9 @@ PLAYERS = {"uct": BestMoveUCT, "random": random_move}
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("-nu", "--uct_iterations", help="n_iterations for uct",
-                        type=int, default=1)
+                        type=int, default=5)
     parser.add_argument("-ng", "--no_games", help="number of games for uct",
-                        type=int, default=4)
+                        type=int, default=5)
     parser.add_argument("-pt", "--previous_training", help="path to previous analysis",
                         type=int, default=None)
     parser.add_argument("-s", "--save_results", help="wether to save the results or not",

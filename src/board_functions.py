@@ -34,7 +34,7 @@ def create_board(situation='initial'):
     return board
 
 def random_move(board):
-    all_moves = list(board.legalMoves())
+    all_moves = [str(a) for a in list(board.legal_moves)]
     r_move = random.choice(all_moves)
     return r_move
 
@@ -49,7 +49,7 @@ class ChessBoard(Board):
         """Set depth=0 to infinite-length exploration"""
         count = 0
         while(True and ((not depth) or count < depth)):
-            moves = self.legalMoves()
+            moves = [str(a) for a in list(self.legal_moves)]
             if self.outcome():
                 return self.score()
             n = random.randint(0, len(moves) - 1)
