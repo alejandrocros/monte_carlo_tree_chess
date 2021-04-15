@@ -116,7 +116,7 @@ if __name__ == '__main__':
                     board.play(black_move)
 
             i += 1
-        last_score = board.score()
+        last_score = board.score() if player_1_white else 1 - board.score()
         results = np.append(results, last_score)
         if game % 50 == 0 and SAVE_RESULTS:
             partial_results_file = f"../partial_results/tmp_results_{uct_iters}_{game}_{ts}.npy"
