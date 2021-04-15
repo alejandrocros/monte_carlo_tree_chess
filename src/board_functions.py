@@ -5,6 +5,7 @@ from chess import Board
 
 STARTING_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 MAXLEGALMOVES = 200
+MAXCODELEGALMOVES = 1000
 
 def look(board, table):
     return table.get(board.h(), None)
@@ -13,6 +14,15 @@ def add(board, table):
     nplayouts = [0.0 for _ in range(MAXLEGALMOVES)]
     nwins = [0.0 for _ in range(MAXLEGALMOVES)]
     table[board.h()] = [1, nplayouts, nwins]
+    return table
+
+def addAMAF(board, table):
+    nplayouts = [0.0 for x in range (MAXLEGALMOVES)]
+    nwins = [0.0 for x in range (MAXLEGALMOVES)]
+    nplayoutsAMAF = [0.0 for x in range (MAXCODELEGALMOVES)]
+    nwinsAMAF = [0.0 for x in range (MAXCODELEGALMOVES)]
+    table[board.h] = [0, nplayouts, nwins, nplayoutsAMAF, nwinsAMAF]
+    return table
 
 def create_board(situation='initial'):
     board = ChessBoard()

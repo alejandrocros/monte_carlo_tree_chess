@@ -7,43 +7,74 @@ from time import time
 
 import numpy as np
 
-from board_functions import ChessBoard, add, look, random_move
+from board_functions import ChessBoard, addAMAF, look, random_move
 from logger import print_stats
 from utils import load_previous_table, save_array, save_table
 
 
-def UCT(board, table, c_utc=0.4):
+def playoutAMAF(board, played):
+    while True:
+        moves = []
+        moves = [str(a) for a in list(board.legal_moves)]
+        if len(moves) == 0 or board.terminal():
+            return board.score()
+        n = random.randint(0, len(moves) - 1)
+        played.append(moves[n].code(self))
+        board.play(moves[n])
+
+def RAVE(board, played):
     if board.terminal():
         return board.score()
-    t = look(board, table=table)
-    if t is not None:
+    t = look(board)
+    if t != None:
         bestValue = -1000000.0
         best = 0
         moves = [str(a) for a in list(board.legal_moves)]
+        bestcode = moves [0].code(board)
         for i in range(0, len(moves)):
             val = 1000000.0
-            if t[1][i] > 0:
-                Q = t[2][i] / t[1][i]
-                if board.turn == False:
-                    Q = 1 - Q
-                val = Q + c_utc * math.sqrt(math.log(t[0]) / t[1][i])
+            code = moves[i].code(board)
+            if t[3][code] > 0:
+                beta = t[3][code] /(t[1][i] + t[3][code] + 1e-5 * t[1][i] * t[3][code])
+                Q = 1
+                if t[1][i] > 0:
+                    Q = t[2][i] / t[1][i]
+                    if board.turn is False:
+                        Q = 1 - Q
+                AMAF = t[4][code] / t[3][code]
+                if board.turn is False:
+                    AMAF = 1 - AMAF
+                val = (1.0 - beta) * Q + beta * AMAF
             if val > bestValue:
                 bestValue = val
                 best = i
-        board.play(moves[best])
-        res = UCT(board, table=table, c_utc=c_utc)
+                bestcode = code
+        board.play(moves [best])
+        res = RAVE(board, played)
         t[0] += 1
         t[1][best] += 1
         t[2][best] += res
+        played.insert(0, bestcode)
+        for k in range(len(played)):
+            code = played [k]
+            seen = False
+            for j in range(k):
+                if played [j] == code:
+                    seen = True
+            if not seen:
+                t [3] [code] += 1
+                t [4] [code] += res
         return res
-    table = add(board, table=table)
-    return board.playout()
+    else:
+        table = addAMAF(board)
+        return playoutAMAF(board, played)
 
-def BestMoveUCT(board, n, table, c_utc=0.4):
+def BestMoveRAVE(board, n):
     for i in range(n):
+        #print(f'aqui: {i}')
         b1 = copy.deepcopy(board)
-        res = UCT(b1, table=table, c_utc=c_utc)
-    t = look(board, table=table)
+        res = RAVE(b1, [])
+    t = look(board)
     moves = [str(a) for a in list(board.legal_moves)]
     best = moves[0]
     bestValue = t[1][0]
@@ -53,7 +84,7 @@ def BestMoveUCT(board, n, table, c_utc=0.4):
             best = moves[i]
     return best
 
-PLAYERS = {"uct": BestMoveUCT, "random": random_move}
+PLAYERS = {"uct": BestMoveUCT, "random": random_move, "rave": BestMoveRAVE}
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -66,7 +97,7 @@ if __name__ == '__main__':
     parser.add_argument("-s", "--save_results", help="wether to save the results or not",
                         type=bool, default=False)
     parser.add_argument("-p1", "--player_1", help="algorithm used by player 1",
-                        type=str, default='uct')
+                        type=str, default='rave')
     parser.add_argument("-p2", "--player_2", help="algorithm used by player 2",
                         type=str, default='random')
 
@@ -106,10 +137,10 @@ if __name__ == '__main__':
                 white_move = player_1(board, n=uct_iters, table=table)
                 board.play(white_move)
                 if not board.terminal():
-                    black_move = player_2(board, n=uct_iters, table=table2, c_utc=0.2)
+                    black_move = player_2(board, n=uct_iters, table=table2, c_utc=math.sqrt(2))
                     board.play(black_move)
             else:
-                white_move = player_2(board, n=uct_iters, table=table2, c_utc=0.2)
+                white_move = player_2(board, n=uct_iters, table=table2, c_utc=math.sqrt(2))
                 board.play(white_move)
                 if not board.terminal():
                     black_move = player_1(board, n=uct_iters, table=table)
