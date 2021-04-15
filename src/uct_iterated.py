@@ -12,7 +12,7 @@ from logger import print_stats
 from utils import load_previous_table, save_array, save_table
 
 
-def UCT(board, table):
+def UCT(board, table, c_utc=0.4):
     if board.terminal():
         return board.score()
     t = look(board, table=table)
@@ -26,12 +26,12 @@ def UCT(board, table):
                 Q = t[2][i] / t[1][i]
                 if board.turn == False:
                     Q = 1 - Q
-                val = Q + 0.4 * math.sqrt(math.log(t[0]) / t[1][i])
+                val = Q + c_utc * math.sqrt(math.log(t[0]) / t[1][i])
             if val > bestValue:
                 bestValue = val
                 best = i
         board.play(moves[best])
-        res = UCT(board, table=table)
+        res = UCT(board, table=table, c_utc=c_utc)
         t[0] += 1
         t[1][best] += 1
         t[2][best] += res
@@ -39,10 +39,10 @@ def UCT(board, table):
     add(board, table=table)
     return board.playout()
 
-def BestMoveUCT(board, n, table):
+def BestMoveUCT(board, n, table, c_utc=0.4):
     for i in range(n):
         b1 = copy.deepcopy(board)
-        res = UCT(b1, table=table)
+        res = UCT(b1, table=table, c_utc=c_utc)
     t = look(board, table=table)
     moves = [str(a) for a in list(board.legal_moves)]
     best = moves[0]
@@ -78,9 +78,10 @@ if __name__ == '__main__':
         table = load_previous_table(args.previous_training)
     else:
         table = dict()
+    table2 = dict()
 
     player_1 = PLAYERS.get(args.player_1, PLAYERS["uct"])
-    player_2 = PLAYERS.get(args.player_2, PLAYERS["random"])
+    player_2 = PLAYERS.get(args.player_2, PLAYERS["uct"])
 
     t0 = time()
     results = np.array(())
@@ -92,23 +93,28 @@ if __name__ == '__main__':
         os.makedirs('../partial_results/', exist_ok=True)
         os.makedirs('../final_results/', exist_ok=True)
 
+    player_1_white = True
     for game in range(number_of_games):
-        print_stats(game, results, last_score, table)
+        print_stats(game, results, last_score, table1=table, table2=table2)
         board = ChessBoard()
         i = 1
         while not board.terminal():
             if i % 50 == 0:
                 print(f'Move {i}        Elapsed time: {(time() - t0) / 60:.3f} mins')
-            white_move = player_1(board, n=uct_iters, table=table)
-            board.play(white_move)
-            if board.turn:
-                print('white')
-                break
-            try:
-                black_move = player_2(board)
-                board.play(black_move)
-            except:  #checkmate by white
-                pass
+
+            if player_1_white:
+                white_move = player_1(board, n=uct_iters, table=table)
+                board.play(white_move)
+                if not board.terminal():
+                    black_move = player_2(board, n=uct_iters, table=table2, c_utc=math.sqrt(2))
+                    board.play(black_move)
+            else:
+                white_move = player_2(board, n=uct_iters, table=table2, c_utc=math.sqrt(2))
+                board.play(white_move)
+                if not board.terminal():
+                    black_move = player_1(board, n=uct_iters, table=table)
+                    board.play(black_move)
+
             i += 1
         last_score = board.score()
         results = np.append(results, last_score)
@@ -117,6 +123,8 @@ if __name__ == '__main__':
             partial_table_file = f"../partial_results/tmp_table_{uct_iters}_{ts}.json"
             save_array(partial_results_file, results)
             save_table(partial_table_file, table)
+
+        player_1_white = not player_1_white
 
     print(f'Mean of the results: {results.mean():.3f}')
 
