@@ -8,6 +8,8 @@ Useful notebooks will be stored in the `/notebooks` folder.
 
 ## TO-DO
 
+[ ] Create a `Player` class with all the strategies implemented.
+
 [ ] Implement `random_move` as a ChessBoard method.
 
 [ ] Documentation.

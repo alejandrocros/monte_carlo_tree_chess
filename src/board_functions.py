@@ -60,9 +60,6 @@ class ChessBoard(Board):
     def play(self, move):
         self.push_san(str(move))
 
-    def legalMoves(self):
-        return [str(a) for a in list(self.legal_moves)]
-
     def score(self):
         _outcome = self.outcome()
         if _outcome is None:

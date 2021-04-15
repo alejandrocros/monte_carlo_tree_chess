@@ -12,14 +12,14 @@ from logger import print_stats
 from utils import load_previous_table, save_array, save_table
 
 
-def UCT(board):
+def UCT(board, table):
     if board.terminal():
         return board.score()
     t = look(board, table=table)
     if t is not None:
         bestValue = -1000000.0
         best = 0
-        moves = board.legalMoves()
+        moves = [str(a) for a in list(board.legal_moves)]
         for i in range(0, len(moves)):
             val = 1000000.0
             if t[1][i] > 0:
@@ -31,7 +31,7 @@ def UCT(board):
                 bestValue = val
                 best = i
         board.play(moves[best])
-        res = UCT(board)
+        res = UCT(board, table=table)
         t[0] += 1
         t[1][best] += 1
         t[2][best] += res
@@ -39,12 +39,12 @@ def UCT(board):
     add(board, table=table)
     return board.playout()
 
-def BestMoveUCT(board, n):
+def BestMoveUCT(board, n, table):
     for i in range(n):
         b1 = copy.deepcopy(board)
-        res = UCT(b1)
+        res = UCT(b1, table=table)
     t = look(board, table=table)
-    moves = board.legalMoves()
+    moves = [str(a) for a in list(board.legal_moves)]
     best = moves[0]
     bestValue = t[1][0]
     for i in range(1, len(moves)):
@@ -53,7 +53,7 @@ def BestMoveUCT(board, n):
             best = moves[i]
     return best
 
-
+PLAYERS = {"uct": BestMoveUCT, "random": random_move}
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -65,6 +65,10 @@ if __name__ == '__main__':
                         type=int, default=None)
     parser.add_argument("-s", "--save_results", help="wether to save the results or not",
                         type=bool, default=False)
+    parser.add_argument("-p1", "--player_1", help="algorithm used by player 1",
+                        type=str, default='uct')
+    parser.add_argument("-p2", "--player_2", help="algorithm used by player 2",
+                        type=str, default='random')
 
     args = parser.parse_args()
     uct_iters = args.uct_iterations
@@ -74,6 +78,9 @@ if __name__ == '__main__':
         table = load_previous_table(args.previous_training)
     else:
         table = dict()
+
+    player_1 = PLAYERS.get(args.player_1, PLAYERS["uct"])
+    player_2 = PLAYERS.get(args.player_2, PLAYERS["random"])
 
     t0 = time()
     results = np.array(())
@@ -92,13 +99,13 @@ if __name__ == '__main__':
         while not board.terminal():
             if i % 50 == 0:
                 print(f'Move {i}        Elapsed time: {(time() - t0) / 60:.3f} mins')
-            white_move = BestMoveUCT(board, n=uct_iters)
+            white_move = player_1(board, n=uct_iters, table=table)
             board.play(white_move)
             if board.turn:
                 print('white')
                 break
             try:
-                black_move = random_move(board)
+                black_move = player_2(board)
                 board.play(black_move)
             except:  #checkmate by white
                 pass
