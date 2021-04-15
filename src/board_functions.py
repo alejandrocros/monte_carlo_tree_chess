@@ -65,10 +65,13 @@ class ChessBoard(Board):
 
     def score(self):
         _outcome = self.outcome()
-        if _outcome is None: return 0.5
+        if _outcome is None:
+            return 0.5
         result = _outcome.result()
-        if result == '1-0': return 1.
-        if result == '0-1': return 0.
+        if result == '1-0':
+            return 1.
+        if result == '0-1':
+            return 0.
         return 0.5
 
     def terminal(self):

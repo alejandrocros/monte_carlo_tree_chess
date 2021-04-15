@@ -8,5 +8,6 @@ Useful notebooks will be stored in the `/notebooks` folder.
 
 ## TO-DO
 
-- Implement `random_move` as a ChessBoard method.
-- Documentation.
+[ ] Implement `random_move` as a ChessBoard method.
+
+[ ] Documentation.
