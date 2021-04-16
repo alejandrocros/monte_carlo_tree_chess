@@ -99,9 +99,6 @@ if __name__ == '__main__':
         board = ChessBoard()
         i = 1
         while not board.terminal():
-            if i % 50 == 0:
-                print(f'Move {i}        Elapsed time: {(time() - t0) / 60:.3f} mins')
-
             if player_1_white:
                 white_move = player_1(board, n=uct_iters, table=table)
                 board.play(white_move)
@@ -123,7 +120,7 @@ if __name__ == '__main__':
             partial_table_file = f"../partial_results/tmp_table_{uct_iters}_{ts}.json"
             save_array(partial_results_file, results)
             save_table(partial_table_file, table)
-
+        print(f'Elapsed time: {(time() - t0) / 60:.3f} mins')
         player_1_white = not player_1_white
 
     print(f'Mean of the results: {results.mean():.3f}')
