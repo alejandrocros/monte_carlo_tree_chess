@@ -10,9 +10,10 @@ import numpy as np
 from board_functions import ChessBoard, addAMAF, look, random_move
 from logger import print_stats
 from utils import load_previous_table, save_array, save_table
+from uct_iterated import best_move_uct
 
 
-def playoutAMAF(board, played):
+def playout_AMAF(board, played):
     while True:
         moves = []
         moves = [str(a) for a in list(board.legal_moves)]
@@ -22,7 +23,7 @@ def playoutAMAF(board, played):
         played.append(moves[n].code(self))
         board.play(moves[n])
 
-def RAVE(board, played):
+def rave(board, played):
     if board.terminal():
         return board.score()
     t = look(board)
@@ -50,7 +51,7 @@ def RAVE(board, played):
                 best = i
                 bestcode = code
         board.play(moves [best])
-        res = RAVE(board, played)
+        res = rave(board, played)
         t[0] += 1
         t[1][best] += 1
         t[2][best] += res
@@ -67,13 +68,12 @@ def RAVE(board, played):
         return res
     else:
         table = addAMAF(board)
-        return playoutAMAF(board, played)
+        return playout_AMAF(board, played)
 
-def BestMoveRAVE(board, n):
+def best_move_rave(board, n):
     for i in range(n):
-        #print(f'aqui: {i}')
         b1 = copy.deepcopy(board)
-        res = RAVE(b1, [])
+        res = rave(b1, [])
     t = look(board)
     moves = [str(a) for a in list(board.legal_moves)]
     best = moves[0]
@@ -84,7 +84,8 @@ def BestMoveRAVE(board, n):
             best = moves[i]
     return best
 
-PLAYERS = {"uct": BestMoveUCT, "random": random_move, "rave": BestMoveRAVE}
+PLAYERS = {"uct": best_move_uct, "random": random_move, "rave": best_move_rave}
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -116,7 +117,7 @@ if __name__ == '__main__':
 
     t0 = time()
     results = np.array(())
-    last_score = None  #to print the last score
+    last_score = None #to print the last score in the 1st iteration
     ts = datetime.now().strftime('%d%H%M%S')
 
     SAVE_RESULTS = args.save_results

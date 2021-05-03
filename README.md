@@ -20,4 +20,4 @@ Some interesting things to do in order to upgrade this repo and make more readab
 
 - [ ] Implement `random_move` as a ChessBoard method.
 
-- [ ] Documentation.
+- [X] Documentation.

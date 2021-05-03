@@ -12,7 +12,7 @@ from logger import print_stats
 from utils import load_previous_table, save_array, save_table
 
 
-def UCT(board, table, c_utc=0.4):
+def uct(board, table, c_uct=0.4):
     if board.terminal():
         return board.score()
     t = look(board, table=table)
@@ -26,12 +26,12 @@ def UCT(board, table, c_utc=0.4):
                 Q = t[2][i] / t[1][i]
                 if board.turn == False:
                     Q = 1 - Q
-                val = Q + c_utc * math.sqrt(math.log(t[0]) / t[1][i])
+                val = Q + c_uct * math.sqrt(math.log(t[0]) / t[1][i])
             if val > bestValue:
                 bestValue = val
                 best = i
         board.play(moves[best])
-        res = UCT(board, table=table, c_utc=c_utc)
+        res = uct(board, table=table, c_uct=c_uct)
         t[0] += 1
         t[1][best] += 1
         t[2][best] += res
@@ -39,10 +39,10 @@ def UCT(board, table, c_utc=0.4):
     table = add(board, table=table)
     return board.playout()
 
-def BestMoveUCT(board, n, table, c_utc=0.4):
+def best_move_uct(board, n, table, c_uct=0.4):
     for i in range(n):
         b1 = copy.deepcopy(board)
-        res = UCT(b1, table=table, c_utc=c_utc)
+        res = uct(b1, table=table, c_uct=c_uct)
     t = look(board, table=table)
     moves = [str(a) for a in list(board.legal_moves)]
     best = moves[0]
@@ -53,7 +53,7 @@ def BestMoveUCT(board, n, table, c_utc=0.4):
             best = moves[i]
     return best
 
-PLAYERS = {"uct": BestMoveUCT, "random": random_move}
+PLAYERS = {"uct": best_move_uct, "random": random_move}
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -103,10 +103,10 @@ if __name__ == '__main__':
                 white_move = player_1(board, n=uct_iters, table=table)
                 board.play(white_move)
                 if not board.terminal():
-                    black_move = player_2(board, n=uct_iters, table=table2, c_utc=0.2)
+                    black_move = player_2(board, n=uct_iters, table=table2, c_uct=0.2)
                     board.play(black_move)
             else:
-                white_move = player_2(board, n=uct_iters, table=table2, c_utc=0.2)
+                white_move = player_2(board, n=uct_iters, table=table2, c_uct=0.2)
                 board.play(white_move)
                 if not board.terminal():
                     black_move = player_1(board, n=uct_iters, table=table)
