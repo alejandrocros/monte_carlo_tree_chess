@@ -7,9 +7,9 @@ from time import time
 
 import numpy as np
 
-from board_functions import ChessBoard, add, look, random_move
-from logger import print_stats
-from utils import load_previous_table, save_array, save_table
+from src.board_functions import ChessBoard, add, look, random_move
+from src.logger import print_stats
+from src.utils.general_utils import load_previous_table, save_array, save_table
 
 
 def uct(board, table, c_uct=0.4):

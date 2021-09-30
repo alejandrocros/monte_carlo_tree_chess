@@ -7,10 +7,10 @@ from time import time
 
 import numpy as np
 
-from board_functions import ChessBoard, addAMAF, look, random_move
-from logger import print_stats
-from utils import load_previous_table, save_array, save_table
-from uct_iterated import best_move_uct
+from src.board_functions import ChessBoard, addAMAF, look, random_move
+from src.logger import print_stats
+from src.utils.general_utils import load_previous_table, save_array, save_table
+from src.uct_iterated import best_move_uct
 
 
 def playout_AMAF(board, played):
