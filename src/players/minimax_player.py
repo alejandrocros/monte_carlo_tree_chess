@@ -8,7 +8,9 @@ from src.players import Player
 from src.utils.evaluation import board_evaluation
 
 
-def minimax(board: Board, depth: int = 2, add_mobility=False) -> Tuple[float, str]:
+def minimax(
+    board: Board, depth: int = 2, add_mobility: bool = False
+) -> Tuple[float, str]:
     legal_moves = board.legal_moves
     player = 2 * int(board.turn) - 1  # 1 for white, -1 for black
     if depth == 0 or board.is_checkmate():
@@ -24,7 +26,7 @@ def minimax(board: Board, depth: int = 2, add_mobility=False) -> Tuple[float, st
         for move in legal_moves:
             child_node = board.copy()
             child_node.push_uci(str(move))
-            final_eval[str(move)] = minimax(child_node, depth=depth - 1)[0]
+            final_eval[str(move)] = minimax(child_node, depth=depth - 1, add_mobility=add_mobility)[0]
 
         best_score = player_function(final_eval.items(), key=operator.itemgetter(1))[1]
         best_moves = [
@@ -40,5 +42,7 @@ class MiniMaxPlayer(Player):
         self.add_mobility = add_mobility
 
     def play(self, board: Board) -> str:
-        best_move = minimax(board, self.depth, self.add_mobility)[1]
+        _, best_move = minimax(
+            board=board, depth=self.depth, add_mobility=self.add_mobility
+        )
         return best_move
