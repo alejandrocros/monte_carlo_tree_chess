@@ -8,12 +8,11 @@ from src.players import Player
 from src.utils.evaluation import board_evaluation
 
 
-def minimax(board: Board, depth: int=2) -> Tuple[float, str]:
-    #  Recursive MiniMax function
+def minimax(board: Board, depth: int=2, add_mobility=False) -> Tuple[float, str]:
     legal_moves = board.legal_moves
     player = 2 * int(board.turn) - 1 #  1 for white, -1 for black
     if depth==0 or board.is_checkmate():
-        score = board_evaluation(board) if not board.is_checkmate() else -player * np.inf
+        score = board_evaluation(board, add_mobility) if not board.is_checkmate() else -player * np.inf
         return score, str()
     else:
         final_eval = dict()
@@ -29,9 +28,10 @@ def minimax(board: Board, depth: int=2) -> Tuple[float, str]:
         return best_score, best_move
 
 class MiniMaxPlayer(Player):
-    def __init__(self, depth=2):
+    def __init__(self, depth=2, add_mobility=False):
         self.depth = depth
+        self.add_mobility = add_mobility
 
     def play(self, board: Board) -> str:
-        best_move = minimax(board, self.depth)[1]
+        best_move = minimax(board, self.depth, self.add_mobility)[1]
         return best_move
