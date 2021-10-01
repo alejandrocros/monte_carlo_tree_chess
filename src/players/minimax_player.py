@@ -26,7 +26,9 @@ def minimax(
         for move in legal_moves:
             child_node = board.copy()
             child_node.push_uci(str(move))
-            final_eval[str(move)] = minimax(child_node, depth=depth - 1, add_mobility=add_mobility)[0]
+            final_eval[str(move)] = minimax(
+                child_node, depth=depth - 1, add_mobility=add_mobility
+            )[0]
 
         best_score = player_function(final_eval.items(), key=operator.itemgetter(1))[1]
         best_moves = [

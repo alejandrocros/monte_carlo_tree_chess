@@ -1,6 +1,7 @@
 import json
 
 import numpy as np
+import random
 
 
 def save_array(filename, np_array):
@@ -21,3 +22,8 @@ def load_previous_table(previous_training_path):
         print(f"Couldn't load the previous training due to {exc}")
         table = dict()
     return table
+
+
+def reset_all_seeds(seed=42):
+    random.seed(seed)
+    np.random.seed(seed)
