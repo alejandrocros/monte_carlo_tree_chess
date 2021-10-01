@@ -1,5 +1,6 @@
 import operator
-from typing import Dict, Tuple
+import random
+from typing import Tuple
 
 import numpy as np
 from chess import Board
@@ -52,9 +53,10 @@ def minimax(board: Board, depth: int=2) -> Tuple[float, str]:
             child_node.push_uci(str(move))
             final_eval[str(move)] = minimax(child_node, depth=depth-1)[0]
 
-        best_move = player_function(final_eval.items(), key=operator.itemgetter(1))[0]
-        score = final_eval[best_move]
-        return score, best_move
+        best_score = player_function(final_eval.items(), key=operator.itemgetter(1))[1]
+        best_moves = [k for k, v in final_eval.items() if v == best_score] #  we store all the moves with highest score
+        best_move = random.choice(best_moves) #  random choice of move among best ones
+        return best_score, best_move
 
 if __name__ == '__main__':
     board = create_board('mate_in_one')
