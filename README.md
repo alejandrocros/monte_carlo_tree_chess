@@ -27,10 +27,12 @@ Some interesting things to do in order to upgrade this repo and make more readab
 
 - [ ] Investigate the recursion problems found in `RAVE`.
 
-- [ ] Create a `Player` class with all the strategies implemented.
+- [ ] Create a `Game` class receiving two `Player` objects and generating a full game (with possibility of interactivity in Lichess).
 
 - [ ] Implement `random_move` as a ChessBoard method.
 
 - [ ] Implement `Lichess API` with different methods for online interactive playing.
+
+- [X] Create a `Player` abstract class and use it to implement the algos.
 
 - [X] Documentation.

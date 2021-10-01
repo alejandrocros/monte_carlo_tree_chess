@@ -1,9 +1,9 @@
 from src.utils.chess_utils import create_board
 from src.players.minimax_player import MiniMaxPlayer
 
-if __name__ == '__main__':
-    print('Testing 3 different MiniMax players...')
-    board = create_board('mate_in_one')
+if __name__ == "__main__":
+    print("Testing 3 different MiniMax players...")
+    board = create_board("mate_in_one")
     player_1 = MiniMaxPlayer(depth=1)
     player_2 = MiniMaxPlayer(depth=2)
     player_3 = MiniMaxPlayer(depth=3)
