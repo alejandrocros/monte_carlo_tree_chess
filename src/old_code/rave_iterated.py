@@ -23,6 +23,7 @@ def playout_AMAF(board, played):
         played.append(moves[n].code(self))
         board.play(moves[n])
 
+
 def rave(board, played):
     if board.terminal():
         return board.score()
@@ -31,12 +32,12 @@ def rave(board, played):
         bestValue = -1000000.0
         best = 0
         moves = [str(a) for a in list(board.legal_moves)]
-        bestcode = moves [0].code(board)
+        bestcode = moves[0].code(board)
         for i in range(0, len(moves)):
             val = 1000000.0
             code = moves[i].code(board)
             if t[3][code] > 0:
-                beta = t[3][code] /(t[1][i] + t[3][code] + 1e-5 * t[1][i] * t[3][code])
+                beta = t[3][code] / (t[1][i] + t[3][code] + 1e-5 * t[1][i] * t[3][code])
                 Q = 1
                 if t[1][i] > 0:
                     Q = t[2][i] / t[1][i]
@@ -50,25 +51,26 @@ def rave(board, played):
                 bestValue = val
                 best = i
                 bestcode = code
-        board.play(moves [best])
+        board.play(moves[best])
         res = rave(board, played)
         t[0] += 1
         t[1][best] += 1
         t[2][best] += res
         played.insert(0, bestcode)
         for k in range(len(played)):
-            code = played [k]
+            code = played[k]
             seen = False
             for j in range(k):
-                if played [j] == code:
+                if played[j] == code:
                     seen = True
             if not seen:
-                t [3] [code] += 1
-                t [4] [code] += res
+                t[3][code] += 1
+                t[4][code] += res
         return res
     else:
         table = addAMAF(board)
         return playout_AMAF(board, played)
+
 
 def best_move_rave(board, n):
     for i in range(n):
@@ -84,23 +86,42 @@ def best_move_rave(board, n):
             best = moves[i]
     return best
 
+
 PLAYERS = {"uct": best_move_uct, "random": random_move, "rave": best_move_rave}
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("-nu", "--uct_iterations", help="n_iterations for uct",
-                        type=int, default=5)
-    parser.add_argument("-ng", "--no_games", help="number of games for uct",
-                        type=int, default=5)
-    parser.add_argument("-pt", "--previous_training", help="path to previous analysis",
-                        type=int, default=None)
-    parser.add_argument("-s", "--save_results", help="wether to save the results or not",
-                        type=bool, default=False)
-    parser.add_argument("-p1", "--player_1", help="algorithm used by player 1",
-                        type=str, default='rave')
-    parser.add_argument("-p2", "--player_2", help="algorithm used by player 2",
-                        type=str, default='random')
+    parser.add_argument(
+        "-nu", "--uct_iterations", help="n_iterations for uct", type=int, default=5
+    )
+    parser.add_argument(
+        "-ng", "--no_games", help="number of games for uct", type=int, default=5
+    )
+    parser.add_argument(
+        "-pt",
+        "--previous_training",
+        help="path to previous analysis",
+        type=int,
+        default=None,
+    )
+    parser.add_argument(
+        "-s",
+        "--save_results",
+        help="wether to save the results or not",
+        type=bool,
+        default=False,
+    )
+    parser.add_argument(
+        "-p1", "--player_1", help="algorithm used by player 1", type=str, default="rave"
+    )
+    parser.add_argument(
+        "-p2",
+        "--player_2",
+        help="algorithm used by player 2",
+        type=str,
+        default="random",
+    )
 
     args = parser.parse_args()
     uct_iters = args.uct_iterations
@@ -117,13 +138,13 @@ if __name__ == '__main__':
 
     t0 = time()
     results = np.array(())
-    last_score = None #to print the last score in the 1st iteration
-    ts = datetime.now().strftime('%d%H%M%S')
+    last_score = None  # to print the last score in the 1st iteration
+    ts = datetime.now().strftime("%d%H%M%S")
 
     SAVE_RESULTS = args.save_results
     if SAVE_RESULTS:
-        os.makedirs('../partial_results/', exist_ok=True)
-        os.makedirs('../final_results/', exist_ok=True)
+        os.makedirs("../partial_results/", exist_ok=True)
+        os.makedirs("../final_results/", exist_ok=True)
 
     player_1_white = True
     for game in range(number_of_games):
@@ -132,16 +153,20 @@ if __name__ == '__main__':
         i = 1
         while not board.terminal():
             if i % 50 == 0:
-                print(f'Move {i}        Elapsed time: {(time() - t0) / 60:.3f} mins')
+                print(f"Move {i}        Elapsed time: {(time() - t0) / 60:.3f} mins")
 
             if player_1_white:
                 white_move = player_1(board, n=uct_iters, table=table)
                 board.play(white_move)
                 if not board.terminal():
-                    black_move = player_2(board, n=uct_iters, table=table2, c_utc=math.sqrt(2))
+                    black_move = player_2(
+                        board, n=uct_iters, table=table2, c_utc=math.sqrt(2)
+                    )
                     board.play(black_move)
             else:
-                white_move = player_2(board, n=uct_iters, table=table2, c_utc=math.sqrt(2))
+                white_move = player_2(
+                    board, n=uct_iters, table=table2, c_utc=math.sqrt(2)
+                )
                 board.play(white_move)
                 if not board.terminal():
                     black_move = player_1(board, n=uct_iters, table=table)
@@ -151,14 +176,16 @@ if __name__ == '__main__':
         last_score = board.score() if player_1_white else 1 - board.score()
         results = np.append(results, last_score)
         if game % 50 == 0 and SAVE_RESULTS:
-            partial_results_file = f"../partial_results/tmp_results_{uct_iters}_{game}_{ts}.npy"
+            partial_results_file = (
+                f"../partial_results/tmp_results_{uct_iters}_{game}_{ts}.npy"
+            )
             partial_table_file = f"../partial_results/tmp_table_{uct_iters}_{ts}.json"
             save_array(partial_results_file, results)
             save_table(partial_table_file, table)
 
         player_1_white = not player_1_white
 
-    print(f'Mean of the results: {results.mean():.3f}')
+    print(f"Mean of the results: {results.mean():.3f}")
 
     if SAVE_RESULTS:
         final_results_file = f"../final_results/results_{uct_iters}_{game}_{ts}.npy"

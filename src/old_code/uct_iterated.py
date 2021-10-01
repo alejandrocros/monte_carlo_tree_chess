@@ -39,6 +39,7 @@ def uct(board, table, c_uct=0.4):
     table = add(board, table=table)
     return board.playout()
 
+
 def best_move_uct(board, n, table, c_uct=0.4):
     for i in range(n):
         b1 = copy.deepcopy(board)
@@ -53,22 +54,41 @@ def best_move_uct(board, n, table, c_uct=0.4):
             best = moves[i]
     return best
 
+
 PLAYERS = {"uct": best_move_uct, "random": random_move}
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("-nu", "--uct_iterations", help="n_iterations for uct",
-                        type=int, default=5)
-    parser.add_argument("-ng", "--no_games", help="number of games for uct",
-                        type=int, default=5)
-    parser.add_argument("-pt", "--previous_training", help="path to previous analysis",
-                        type=int, default=None)
-    parser.add_argument("-s", "--save_results", help="wether to save the results or not",
-                        type=bool, default=False)
-    parser.add_argument("-p1", "--player_1", help="algorithm used by player 1",
-                        type=str, default='uct')
-    parser.add_argument("-p2", "--player_2", help="algorithm used by player 2",
-                        type=str, default='random')
+    parser.add_argument(
+        "-nu", "--uct_iterations", help="n_iterations for uct", type=int, default=5
+    )
+    parser.add_argument(
+        "-ng", "--no_games", help="number of games for uct", type=int, default=5
+    )
+    parser.add_argument(
+        "-pt",
+        "--previous_training",
+        help="path to previous analysis",
+        type=int,
+        default=None,
+    )
+    parser.add_argument(
+        "-s",
+        "--save_results",
+        help="wether to save the results or not",
+        type=bool,
+        default=False,
+    )
+    parser.add_argument(
+        "-p1", "--player_1", help="algorithm used by player 1", type=str, default="uct"
+    )
+    parser.add_argument(
+        "-p2",
+        "--player_2",
+        help="algorithm used by player 2",
+        type=str,
+        default="random",
+    )
 
     args = parser.parse_args()
     uct_iters = args.uct_iterations
@@ -85,13 +105,13 @@ if __name__ == '__main__':
 
     t0 = time()
     results = np.array(())
-    last_score = None  #to print the last score
-    ts = datetime.now().strftime('%d%H%M%S')
+    last_score = None  # to print the last score
+    ts = datetime.now().strftime("%d%H%M%S")
 
     SAVE_RESULTS = args.save_results
     if SAVE_RESULTS:
-        os.makedirs('../partial_results/', exist_ok=True)
-        os.makedirs('../final_results/', exist_ok=True)
+        os.makedirs("../partial_results/", exist_ok=True)
+        os.makedirs("../final_results/", exist_ok=True)
 
     player_1_white = True
     for game in range(number_of_games):
@@ -116,14 +136,16 @@ if __name__ == '__main__':
         last_score = board.score() if player_1_white else 1 - board.score()
         results = np.append(results, last_score)
         if game % 50 == 0 and SAVE_RESULTS:
-            partial_results_file = f"../partial_results/tmp_results_{uct_iters}_{game}_{ts}.npy"
+            partial_results_file = (
+                f"../partial_results/tmp_results_{uct_iters}_{game}_{ts}.npy"
+            )
             partial_table_file = f"../partial_results/tmp_table_{uct_iters}_{ts}.json"
             save_array(partial_results_file, results)
             save_table(partial_table_file, table)
-        print(f'Elapsed time: {(time() - t0) / 60:.3f} mins')
+        print(f"Elapsed time: {(time() - t0) / 60:.3f} mins")
         player_1_white = not player_1_white
 
-    print(f'Mean of the results: {results.mean():.3f}')
+    print(f"Mean of the results: {results.mean():.3f}")
 
     if SAVE_RESULTS:
         final_results_file = f"../final_results/results_{uct_iters}_{game}_{ts}.npy"
