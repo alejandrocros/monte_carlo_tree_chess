@@ -15,6 +15,10 @@ def create_board(situation="initial"):
         board = Board(
             fen="r1bqkbnr/1pp1pQpp/p1np4/8/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq - 0 4"
         )
+    elif situation == "mate_in_two":
+        board = Board(
+            fen="r1bqkbnr/1pp1p1pp/p1np4/8/2B1P3/5Q2/PPPP1PPP/RNB1K1NR w KQkq - 0 4"
+        )
     elif situation == "mate_in_one":
         board = Board(
             fen="r1bqkbnr/p1pp1ppp/1pn5/4p3/2B1P3/5Q2/PPPP1PPP/RNB1K1NR w KQkq - 0 4"
