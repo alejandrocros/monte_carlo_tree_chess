@@ -11,13 +11,25 @@ Useful notebooks will be stored in the `/notebooks` folder:
 
 ### Execution
 
-In order to execute a specific algorithm, one need to install the requirements and run the specific script as follows:
+In order to execute a specific algorithm, one needs to install the package:
+
+```bash
+pip install -e .
+```
+
+and running the desired script as:
+
+```bash
+python src/minimax_implementation.py
+```
+
+Another alternative execution procedure consists on installing only the requirements (not the entire package) and running the desired script as follows:
 
 ```bash
 python -m src.minimax_implementation
-````
+```
 
-from the parent folder (example for the MiniMax implementation).
+from the parent folder (example for the MiniMax implementation). (Note that this way to execute the scripts may lead to import problems)
 
 
 #### TO-DO
@@ -30,6 +42,10 @@ Some interesting things to do in order to upgrade this repo and make more readab
 - [ ] Create a `Game` class receiving two `Player` objects and generating a full game (with possibility of interactivity in Lichess).
 
 - [ ] Implement `Lichess API` with different methods for online interactive playing.
+
+- [X] Add `setup.py`.
+
+- [ ] Test MiniMax implementation.
 
 - [X] Create a `Player` abstract class and use it to implement the algos.
 
