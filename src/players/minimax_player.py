@@ -13,7 +13,7 @@ def minimax(
 ) -> Tuple[float, str]:
     legal_moves = board.legal_moves
     player = 2 * int(board.turn) - 1  # 1 for white, -1 for black
-    if depth == 0 or board.is_checkmate():
+    if depth == 0 or board.outcome() is not None:
         score = (
             board_evaluation(board, add_mobility)
             if not board.is_checkmate()

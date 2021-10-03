@@ -4,10 +4,10 @@ from src.players import Player
 
 class Game:
     def __init__(
-        self, Player1: Player, Player2: Player, board: Board, verbose: bool = False
+        self, player_1: Player, player_2: Player, board: Board, verbose: bool = False
     ):
-        self.white_player = Player1
-        self.black_player = Player2
+        self.white_player = player_1
+        self.black_player = player_2
         self.board = board
         self.verbose = verbose
 
@@ -24,7 +24,7 @@ class Game:
         self.board.push_san(move)
 
     def is_finished(self):
-        return self.board.is_checkmate()
+        return self.board.outcome() is not None
 
     def play_n_moves(self, no_moves: int):
         for _ in range(no_moves):
@@ -33,6 +33,8 @@ class Game:
     def play_game(self):
         while not self.is_finished():
             self.execute_next_move()
+            if self.verbose and self.board.ply() % 20 == 0:
+                print(f"{self.board.ply()} turns played")
 
         if self.verbose:
             print(f"Game ended with result: {self.board.result()}")
