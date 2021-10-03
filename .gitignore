@@ -145,3 +145,6 @@ final_results/
 
 .vscode/
 .DS_Store
+
+img/
+logs/
