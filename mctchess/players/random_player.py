@@ -1,4 +1,4 @@
-from src.players import Player
+from mctchess.players import Player
 from chess import Board
 import random
 

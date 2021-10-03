@@ -4,8 +4,8 @@ from typing import Tuple
 
 import numpy as np
 from chess import Board
-from src.players import Player
-from src.utils.evaluation import board_evaluation
+from mctchess.players import Player
+from mctchess.utils.evaluation import board_evaluation
 
 
 def minimax(

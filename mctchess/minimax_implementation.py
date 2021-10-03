@@ -1,5 +1,5 @@
-from src.utils.chess_utils import create_board
-from src.players.minimax_player import MiniMaxPlayer
+from mctchess.utils.chess_utils import create_board
+from mctchess.players.minimax_player import MiniMaxPlayer
 
 if __name__ == "__main__":
     print("Testing 3 different MiniMax players...")

@@ -1,5 +1,5 @@
 from chess import Board
-from src.players import Player
+from mctchess.players import Player
 
 
 class Game:
