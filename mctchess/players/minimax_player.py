@@ -11,7 +11,6 @@ from mctchess.utils.evaluation import board_evaluation
 def minimax(
     board: Board, depth: int = 2, add_mobility: bool = False
 ) -> Tuple[float, str]:
-    legal_moves = board.legal_moves
     player = 2 * int(board.turn) - 1  # 1 for white, -1 for black
     if depth == 0 or board.outcome() is not None:
         score = (
@@ -23,12 +22,13 @@ def minimax(
     else:
         final_eval = dict()
         player_function = max if player == 1 else min
+        legal_moves = board.legal_moves
         for move in legal_moves:
-            child_node = board.copy()
-            child_node.push_uci(str(move))
+            board.push(move)
             final_eval[str(move)] = minimax(
-                child_node, depth=depth - 1, add_mobility=add_mobility
+                board, depth=depth - 1, add_mobility=add_mobility
             )[0]
+            board.pop()
 
         best_score = player_function(final_eval.items(), key=operator.itemgetter(1))[1]
         best_moves = [
@@ -39,7 +39,7 @@ def minimax(
 
 
 class MiniMaxPlayer(Player):
-    def __init__(self, depth=2, add_mobility=False):
+    def __init__(self, depth: int = 2, add_mobility: bool = False) -> None:
         self.depth = depth
         self.add_mobility = add_mobility
 

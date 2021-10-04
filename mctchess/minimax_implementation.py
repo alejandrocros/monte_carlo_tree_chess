@@ -1,8 +1,10 @@
 from mctchess.utils.chess_utils import create_board
+from mctchess.utils.general_utils import reset_all_seeds
 from mctchess.players.minimax_player import MiniMaxPlayer
 
 if __name__ == "__main__":
     print("Testing 3 different MiniMax players...")
+    reset_all_seeds()
     board = create_board("mate_in_one")
     player_1 = MiniMaxPlayer(depth=1)
     player_2 = MiniMaxPlayer(depth=2)
