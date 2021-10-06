@@ -38,13 +38,66 @@ def minimax(
         return best_score, best_move
 
 
+def minimax_pruned(board: Board, depth: int = 2) -> Tuple[float, str]:
+    def alpha_beta(board: Board, depth: int, alpha: float, beta: float) -> float:
+        player = 2 * int(board.turn) - 1
+        if depth == 0 or board.outcome() is not None:
+            score = (
+                board_evaluation(board)
+                if not board.is_checkmate()
+                else -player * np.inf
+            )
+            return score
+
+        best_score = -player * np.inf
+        for move in board.legal_moves:
+            board.push(move)
+            local_score = alpha_beta(board, depth - 1, alpha, beta)
+            if player == 1:
+                best_score = max(best_score, local_score)
+                alpha = max(alpha, best_score)
+            else:
+                best_score = min(best_score, local_score)
+                beta = min(beta, best_score)
+
+            board.pop()
+            if beta <= alpha:
+                break
+
+        return best_score
+
+    player = 2 * int(board.turn) - 1
+    global_score = -player * np.inf
+    chosen_move = None
+
+    for move in board.legal_moves:
+        board.push(move)
+        local_score = alpha_beta(board, depth - 1, -np.inf, np.inf)
+
+        if player == 1 and local_score > global_score:
+            global_score = local_score
+            chosen_move = move
+        elif player == -1 and local_score < global_score:
+            global_score = local_score
+            chosen_move = move
+
+        board.pop()
+    return global_score, chosen_move
+
+
 class MiniMaxPlayer(Player):
-    def __init__(self, depth: int = 2, add_mobility: bool = False) -> None:
+    def __init__(
+        self, depth: int = 2, add_mobility: bool = False, ab_pruning: bool = True
+    ) -> None:
         self.depth = depth
         self.add_mobility = add_mobility
+        self.ab_pruning = ab_pruning
 
     def play(self, board: Board) -> str:
-        _, best_move = minimax(
-            board=board, depth=self.depth, add_mobility=self.add_mobility
-        )
+        if self.ab_pruning:
+            _, best_move = minimax_pruned(board=board, depth=self.depth)
+        else:
+            _, best_move = minimax(
+                board=board, depth=self.depth, add_mobility=self.add_mobility
+            )
         return best_move

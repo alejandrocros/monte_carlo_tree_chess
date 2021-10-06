@@ -43,6 +43,8 @@ Some interesting things to do in order to upgrade this repo and make more readab
 
 - [ ] Implement `Lichess API` with different methods for online interactive playing.
 
+- [ ] Define evaluation functions and pass them as argument to MiniMax players.
+
 - [X] Create a `Game` class receiving two `Player` objects and generating a full game (with possibility of interactivity in Lichess).
 
 - [X] Add `setup.py`.
