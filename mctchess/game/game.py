@@ -10,6 +10,7 @@ class Game:
         self.black_player = player_2
         self.board = board
         self.verbose = verbose
+        self.game_history = list()
 
     def turn(self):
         return self.board.turn
@@ -19,9 +20,13 @@ class Game:
         move = player.play(self.board)
         return move
 
+    def save_move_in_history(self, move):
+        self.game_history.append(move)
+
     def execute_next_move(self):
         move = self.compute_next_move()
         self.board.push_san(move)
+        self.save_move_in_history(move)
 
     def is_finished(self):
         return self.board.outcome() is not None
