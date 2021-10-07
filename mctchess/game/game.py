@@ -16,7 +16,7 @@ class Game:
         return self.board.turn
 
     def compute_next_move(self):
-        player = self.white_player if self.turn else self.black_player
+        player = self.white_player if self.turn() else self.black_player
         move = player.play(self.board)
         return move
 
