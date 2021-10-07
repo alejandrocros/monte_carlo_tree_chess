@@ -71,8 +71,9 @@ def minimax_pruned(board: Board, depth: int = 2) -> Tuple[float, str]:
     player = 2 * int(board.turn) - 1
     global_score = -player * np.inf
     chosen_move = None
-
-    for move in board.legal_moves:
+    legal_moves = list(board.legal_moves)
+    shuffle(legal_moves)
+    for move in legal_moves:
         board.push(move)
         score = alpha_beta(board, depth - 1, -np.inf, np.inf)
 
@@ -84,7 +85,7 @@ def minimax_pruned(board: Board, depth: int = 2) -> Tuple[float, str]:
 
         board.pop()
 
-    if chosen_move is None:  #  In case all moves are losing moves
+    if chosen_move is None:  #  In case all moves are losing moves it keeps the last one (random)
         chosen_move = move
 
     return global_score, str(chosen_move)
