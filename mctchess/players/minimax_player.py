@@ -1,5 +1,7 @@
 import operator
-import random
+from hashlib import sha256
+from random import shuffle
+from time import time
 from typing import Tuple
 
 import numpy as np
@@ -22,7 +24,8 @@ def minimax(
     else:
         final_eval = dict()
         player_function = max if player == 1 else min
-        legal_moves = board.legal_moves
+        legal_moves = list(board.legal_moves)  # we shuffle for random choice
+        shuffle(legal_moves)
         for move in legal_moves:
             board.push(move)
             final_eval[str(move)] = minimax(
@@ -34,7 +37,7 @@ def minimax(
         best_moves = [
             k for k, v in final_eval.items() if v == best_score
         ]  # we store all the moves with highest score
-        best_move = random.choice(best_moves)  # random choice of move among best ones
+        best_move = best_moves[0]
         return best_score, best_move
 
 
@@ -50,20 +53,19 @@ def minimax_pruned(board: Board, depth: int = 2) -> Tuple[float, str]:
             return score
 
         best_score = -player * np.inf
-        for move in board.legal_moves:
+        legal_moves = list(board.legal_moves)
+        shuffle(legal_moves)
+        for move in legal_moves:
             board.push(move)
-            local_score = alpha_beta(board, depth - 1, alpha, beta)
-            if player == 1:
-                best_score = max(best_score, local_score)
-                alpha = max(alpha, best_score)
-            else:
-                best_score = min(best_score, local_score)
-                beta = min(beta, best_score)
+            score = alpha_beta(board, depth - 1, alpha, beta)
+            player_function = max if player == 1 else min
+            best_score = player_function(best_score, score)
+            alpha = max(alpha, best_score) if player == 1 else alpha
+            beta = min(beta, best_score) if player != 1 else beta
 
             board.pop()
             if beta <= alpha:
                 break
-
         return best_score
 
     player = 2 * int(board.turn) - 1
@@ -72,17 +74,20 @@ def minimax_pruned(board: Board, depth: int = 2) -> Tuple[float, str]:
 
     for move in board.legal_moves:
         board.push(move)
-        local_score = alpha_beta(board, depth - 1, -np.inf, np.inf)
+        score = alpha_beta(board, depth - 1, -np.inf, np.inf)
 
-        if player == 1 and local_score > global_score:
-            global_score = local_score
-            chosen_move = move
-        elif player == -1 and local_score < global_score:
-            global_score = local_score
+        if (player == 1 and score > global_score) or (
+            player == -1 and score < global_score
+        ):
+            global_score = score
             chosen_move = move
 
         board.pop()
-    return global_score, chosen_move
+
+    if chosen_move is None:  #  In case all moves are losing moves
+        chosen_move = move
+
+    return global_score, str(chosen_move)
 
 
 class MiniMaxPlayer(Player):
@@ -92,6 +97,7 @@ class MiniMaxPlayer(Player):
         self.depth = depth
         self.add_mobility = add_mobility
         self.ab_pruning = ab_pruning
+        self.decription = self.describe()
 
     def play(self, board: Board) -> str:
         if self.ab_pruning:
@@ -101,3 +107,14 @@ class MiniMaxPlayer(Player):
                 board=board, depth=self.depth, add_mobility=self.add_mobility
             )
         return best_move
+
+    def describe(self) -> dict:
+        timestamp = time()
+        descr = {
+            "id": sha256(str(timestamp).encode("utf-8")).hexdigest(),
+            "name": "MinMaxPlayer",
+            "depth": self.depth,
+            "add_mobility": self.add_mobility,
+            "ab_pruning": self.ab_pruning,
+        }
+        return descr

@@ -8,3 +8,7 @@ class Player(ABC):
     @abstractmethod
     def play(board: Board) -> str:
         pass
+
+    @abstractmethod
+    def describe(self) -> dict:
+        pass
