@@ -39,17 +39,27 @@ Some interesting things to do in order to upgrade this repo and make more readab
 
 - [ ] Investigate the recursion problems found in `RAVE`.
 
-- [ ] Add `Makefile`.
+- [X] Add `Makefile` (wait for tests).
+
+- [X] Add tests.
 
 - [ ] Implement `Lichess API` with different methods for online interactive playing.
 
-- [ ] Define evaluation functions and pass them as argument to MiniMax players.
+- [ ] Add hashing of positions with evaluation in `Game` to enhance performance.
+
+- [ ] Refactor evaluation functions and pass them as argument to MiniMax players.
+
+- [ ] Add square value to piece evaluation (use board.piece_map() and values stored in a dict)
+
+- [ ] Add parallel computation for minimax and for game simulation.
 
 - [X] Create a `Game` class receiving two `Player` objects and generating a full game (with possibility of interactivity in Lichess).
 
 - [X] Add `setup.py`.
 
 - [X] Test MiniMax implementation.
+
+- [X] Add alpha-beta pruning.
 
 - [X] Create a `Player` abstract class and use it to implement the algos.
 
