@@ -72,6 +72,8 @@ def minimax_pruned(board: Board, depth: int = 2) -> Tuple[float, str]:
     global_score = -player * np.inf
     chosen_move = None
     legal_moves = list(board.legal_moves)
+    if len(legal_moves) == 0:
+        return global_score, str()
     shuffle(legal_moves)
     for move in legal_moves:
         board.push(move)

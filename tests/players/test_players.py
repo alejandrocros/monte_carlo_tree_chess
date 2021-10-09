@@ -1,28 +1,39 @@
 import pytest
 from chess import Board
-from mctchess.players import Player
+from mctchess.utils.chess_utils import create_board
 from mctchess.players.minimax_player import MiniMaxPlayer
 from mctchess.players.random_player import RandomPlayer
 
 
-@pytest.mark.parametrize("player_type", [("minimax-player"), ("random-player")])
+def get_player(player_type):
+    if player_type == "minimax":
+        return MiniMaxPlayer(depth=1)
+    elif player_type == "random":
+        return RandomPlayer()
+    else:
+        raise ValueError("Invalid player type")
+
+
+@pytest.mark.parametrize("player_type", [("minimax"), ("random")])
 def test_player_init(player_type):
-    if player_type == "minimax-player":
-        player = MiniMaxPlayer(depth=1)
-    elif player_type == "random-player":
-        player = RandomPlayer()
+    player = get_player(player_type)
     description = player.describe()
     assert isinstance(description["id"], str)
     assert isinstance(description["name"], str)
 
 
-@pytest.mark.parametrize("player_type", [("minimax-player"), ("random-player")])
+@pytest.mark.parametrize("player_type", [("minimax"), ("random")])
 def test_player_play(player_type):
     board = Board()
-    if player_type == "minimax-player":
-        player = MiniMaxPlayer(depth=1)
-    elif player_type == "random-player":
-        player = RandomPlayer()
+    player = get_player(player_type)
     move = player.play(board)
     assert isinstance(move, str)
-    assert move in [str(m) for m in list(board.legal_moves)]
+    assert move in [str(m) for m in list(board.legal_moves)]  #  Check if move is legal
+
+
+@pytest.mark.parametrize("player_type", [("minimax"), ("random")])
+def test_player_play_ended_game(player_type):
+    board = create_board("ended_game")
+    player = get_player(player_type)
+    move = player.play(board)
+    assert move == str()
