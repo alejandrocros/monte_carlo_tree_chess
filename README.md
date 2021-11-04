@@ -37,11 +37,9 @@ from the parent folder (example for the MiniMax implementation). (Note that this
 Some interesting things to do in order to upgrade this repo and make more readable could be:
 
 
+- [ ] Put the evaluation arguments inside a method that calls eval function.
+
 - [ ] Investigate the recursion problems found in `RAVE`.
-
-- [X] Add `Makefile` (wait for tests).
-
-- [X] Add tests.
 
 - [ ] Implement `Lichess API` with different methods for online interactive playing.
 
@@ -52,6 +50,14 @@ Some interesting things to do in order to upgrade this repo and make more readab
 - [ ] Add square value to piece evaluation (use board.piece_map() and values stored in a dict)
 
 - [ ] Add parallel computation for minimax and for game simulation.
+
+- [ ] Put minimax and minimax_pruned out of MiniMaxPlayer
+
+- [X] Check that new minimax (with self.minimax) behaves as expected
+
+- [X] Add `Makefile` (wait for tests).
+
+- [X] Add tests.
 
 - [X] Create a `Game` class receiving two `Player` objects and generating a full game (with possibility of interactivity in Lichess).
 

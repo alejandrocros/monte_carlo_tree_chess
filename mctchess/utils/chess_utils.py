@@ -28,5 +28,7 @@ def create_board(situation="initial"):
     elif situation == "capture_rook_loses":
         board = Board(fen="2r5/3r2k1/8/8/8/8/5PPP/2R3K1 w - - 0 1")
     elif situation == "ended_game":
-        board = Board(fen="r1bqkbnr/p1pp1Qpp/1pn5/4p3/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq - 0 4")
+        board = Board(
+            fen="r1bqkbnr/p1pp1Qpp/1pn5/4p3/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq - 0 4"
+        )
     return board

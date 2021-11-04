@@ -8,7 +8,7 @@ import os
 import setuptools
 
 
-def _read_reqs(requirements_filename: str="requirements.txt") -> List:
+def _read_reqs(requirements_filename: str = "requirements.txt") -> List:
     full_path = os.path.join(os.path.dirname(__file__), requirements_filename)
     requirements = list()
     with open(full_path) as fp:
