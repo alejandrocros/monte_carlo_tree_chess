@@ -7,16 +7,18 @@ from mctchess.players.random_player import RandomPlayer
 
 def get_player(player_type):
     if player_type == "minimax-pruned":
-        return MiniMaxPlayer(depth=1, ab_pruning=True)
+        return MiniMaxPlayer(depth=1, add_mobility=False, ab_pruning=True)
     elif player_type == "minimax-not-pruned":
-        return MiniMaxPlayer(depth=1, ab_pruning=False)
+        return MiniMaxPlayer(depth=1, add_mobility=False, ab_pruning=False)
     elif player_type == "random":
         return RandomPlayer()
     else:
         raise ValueError("Invalid player type")
 
 
-@pytest.mark.parametrize("player_type", [("minimax-pruned"), ("minimax-not-pruned"), ("random")])
+@pytest.mark.parametrize(
+    "player_type", [("minimax-pruned"), ("minimax-not-pruned"), ("random")]
+)
 def test_player_init(player_type):
     player = get_player(player_type)
     description = player.describe()
@@ -24,7 +26,9 @@ def test_player_init(player_type):
     assert isinstance(description["name"], str)
 
 
-@pytest.mark.parametrize("player_type", [("minimax-pruned"), ("minimax-not-pruned"), ("random")])
+@pytest.mark.parametrize(
+    "player_type", [("minimax-pruned"), ("minimax-not-pruned"), ("random")]
+)
 def test_player_play(player_type):
     board = Board()
     player = get_player(player_type)
@@ -33,7 +37,9 @@ def test_player_play(player_type):
     assert move in [str(m) for m in list(board.legal_moves)]  #  Check if move is legal
 
 
-@pytest.mark.parametrize("player_type", [("minimax-pruned"), ("minimax-not-pruned"), ("random")])
+@pytest.mark.parametrize(
+    "player_type", [("minimax-pruned"), ("minimax-not-pruned"), ("random")]
+)
 def test_player_play_ended_game(player_type):
     board = create_board("ended_game")
     player = get_player(player_type)
