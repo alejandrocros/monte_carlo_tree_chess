@@ -3,10 +3,21 @@ import random
 from chess import Board
 
 
-def random_move(board):
-    all_moves = [str(a) for a in list(board.legal_moves)]
-    r_move = random.choice(all_moves)
-    return r_move
+def get_random_move(board: Board) -> str:
+    legal_moves = list(board.legal_moves)
+    move = str(random.choice(legal_moves)) if legal_moves else str()
+    return move
+
+
+def parse_result(result: str) -> float:
+    if result == "1-0":
+        return 1
+    elif result == "0-1":
+        return 0
+    elif result == "1/2-1/2":
+        return 0.5
+    else:
+        raise ValueError("Error: result not recognized")
 
 
 def create_board(situation="initial"):

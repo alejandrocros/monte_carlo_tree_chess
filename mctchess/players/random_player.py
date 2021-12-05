@@ -1,15 +1,9 @@
-import random
 from hashlib import sha256
 from time import time
 
 from chess import Board
 from mctchess.players import Player
-
-
-def get_random_move(board: Board) -> str:
-    legal_moves = list(board.legal_moves)
-    move = str(random.choice(legal_moves)) if legal_moves else str()
-    return move
+from mctchess.utils.chess_utils import get_random_move
 
 
 class RandomPlayer(Player):

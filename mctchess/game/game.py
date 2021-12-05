@@ -29,7 +29,7 @@ class Game:
         self.save_move_in_history(move)
 
     def is_finished(self):
-        return self.board.outcome() is not None
+        return self.board.is_game_over()
 
     def play_n_moves(self, no_moves: int):
         for _ in range(no_moves):
