@@ -1,18 +1,31 @@
 from hashlib import sha256
 from random import shuffle
 from time import time
-
+import multiprocessing as mp
+from typing import List
 import numpy as np
 from chess import Board
 from mctchess.players import Player
 from mctchess.utils.chess_utils import get_random_move, parse_result
 
 
+def rollout_move(board: Board, move, simulations=10) -> tuple:
+    rollouts_scores = list()
+    for _ in range(simulations):
+        child_node = board.copy()
+        child_node.push(move)
+        while not child_node.is_game_over():
+            rand_move = get_random_move(child_node)
+            child_node.push_san(rand_move)
+        result = parse_result(child_node.result())
+        rollouts_scores.append(result)
+    return (move, np.mean(rollouts_scores))
+
 class MCPlayer(Player):
-    def __init__(self, simulations=10) -> None:
+    def __init__(self, n_simulations=10, no_pools=mp.cpu_count()-1) -> None:
         self.decription = self.describe()
-        self.simulations = simulations
-        self.history = dict()  # {board_position: {"ratio": 0.22, "visits": 2}}
+        self.simulations = n_simulations
+        self.no_pools = no_pools
 
     def rollout(self, board: Board) -> float:
         while not board.is_game_over():
@@ -23,22 +36,23 @@ class MCPlayer(Player):
 
     def play(self, board: Board) -> str:
         legal_moves = list(board.legal_moves)  # we shuffle for random choice
+
+        if not legal_moves:
+            return str()
         shuffle(legal_moves)
-        evaluations = dict()
-        for move in legal_moves:
-            rollouts_scores = list()
-            for _ in range(self.simulations):
-                child_node = board.copy()
-                child_node.push(move)
-                rollout = self.rollout(child_node)
-                rollouts_scores.append(rollout)
-            mean_score = np.mean(rollouts_scores)
-            evaluations[move] = mean_score
+
+        no_pools = self.no_pools
+        pool = mp.Pool(processes=no_pools)
+        evaluations = pool.starmap(rollout_move, [(board, move, self.simulations) for move in legal_moves])
+        pool.close()
+
+        evaluations = {item[0]: item[1] for item in evaluations}
         if board.turn:  # white player
             best_move = max(evaluations, key=evaluations.get)
         else:
             best_move = min(evaluations, key=evaluations.get)
-        return best_move
+        return str(best_move)
+
 
     def describe(self) -> dict:
         timestamp = time()

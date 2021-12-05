@@ -51,7 +51,9 @@ Some interesting things to do in order to upgrade this repo and make more readab
 
 - [ ] Add parallel computation for minimax and for game simulation.
 
-- [ ] Put minimax and minimax_pruned out of MiniMaxPlayer
+- [ ] Put minimax and minimax_pruned out of MiniMaxPlayer.
+
+- [X] Parallelize Monte-Carlo evaluation.
 
 - [X] Check that new minimax (with self.minimax) behaves as expected
 
