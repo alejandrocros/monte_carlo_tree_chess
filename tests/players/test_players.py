@@ -20,7 +20,8 @@ def get_player(player_type):
 
 
 @pytest.mark.parametrize(
-    "player_type", [("minimax-pruned"), ("minimax-not-pruned"), ("monte-carlo"), ("random")]
+    "player_type",
+    [("minimax-pruned"), ("minimax-not-pruned"), ("monte-carlo"), ("random")],
 )
 def test_player_init(player_type):
     player = get_player(player_type)
@@ -30,7 +31,8 @@ def test_player_init(player_type):
 
 
 @pytest.mark.parametrize(
-    "player_type", [("minimax-pruned"), ("minimax-not-pruned"), ("monte-carlo"), ("random")]
+    "player_type",
+    [("minimax-pruned"), ("minimax-not-pruned"), ("monte-carlo"), ("random")],
 )
 def test_player_play(player_type):
     board = Board()
@@ -41,7 +43,8 @@ def test_player_play(player_type):
 
 
 @pytest.mark.parametrize(
-    "player_type", [("minimax-pruned"), ("minimax-not-pruned"), ("monte-carlo"), ("random")]
+    "player_type",
+    [("minimax-pruned"), ("minimax-not-pruned"), ("monte-carlo"), ("random")],
 )
 def test_player_play_ended_game(player_type):
     board = create_board("ended_game")

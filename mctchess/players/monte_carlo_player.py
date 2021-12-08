@@ -21,8 +21,9 @@ def rollout_move(board: Board, move, simulations=10) -> tuple:
         rollouts_scores.append(result)
     return (move, np.mean(rollouts_scores))
 
+
 class MCPlayer(Player):
-    def __init__(self, n_simulations=10, no_pools=mp.cpu_count()-1) -> None:
+    def __init__(self, n_simulations=10, no_pools=mp.cpu_count() - 1) -> None:
         self.decription = self.describe()
         self.simulations = n_simulations
         self.no_pools = no_pools
@@ -43,7 +44,9 @@ class MCPlayer(Player):
 
         no_pools = self.no_pools
         pool = mp.Pool(processes=no_pools)
-        evaluations = pool.starmap(rollout_move, [(board, move, self.simulations) for move in legal_moves])
+        evaluations = pool.starmap(
+            rollout_move, [(board, move, self.simulations) for move in legal_moves]
+        )
         pool.close()
 
         evaluations = {item[0]: item[1] for item in evaluations}
@@ -52,7 +55,6 @@ class MCPlayer(Player):
         else:
             best_move = min(evaluations, key=evaluations.get)
         return str(best_move)
-
 
     def describe(self) -> dict:
         timestamp = time()

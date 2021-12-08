@@ -53,6 +53,8 @@ Some interesting things to do in order to upgrade this repo and make more readab
 
 - [ ] Put minimax and minimax_pruned out of MiniMaxPlayer.
 
+- [ ] Perf comparison of parallel - no parallel MC implementation (profiling in notebook?).
+
 - [X] Parallelize Monte-Carlo evaluation.
 
 - [X] Check that new minimax (with self.minimax) behaves as expected

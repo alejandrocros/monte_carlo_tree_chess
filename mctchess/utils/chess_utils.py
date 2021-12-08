@@ -1,6 +1,9 @@
 import random
+from time import time
 
 from chess import Board
+from mctchess.game.game import Game
+from mctchess.players import Player
 
 
 def get_random_move(board: Board) -> str:
@@ -43,3 +46,37 @@ def create_board(situation="initial"):
             fen="r1bqkbnr/p1pp1Qpp/1pn5/4p3/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq - 0 4"
         )
     return board
+
+
+def test_n_games(p1: Player, p2: Player, n_games: int, verbose: bool = False) -> list:
+    t0 = time()
+    results = list()
+    for i in range(n_games):
+        board = Board()
+        game = (
+            Game(p1, p2, board, verbose=verbose)
+            if i % 2 == 0
+            else Game(p2, p1, board, verbose=verbose)
+        )
+        game.play_game()
+        outcome = board.outcome().winner
+        if outcome is None:
+            winner = "tie"
+        elif i % 2 == 0 and outcome is True:
+            winner = "p1"
+        else:
+            winner = "p2"
+        # winner = (
+        #     "tie"
+        #     if outcome is None
+        #     else ("p1" if (i % 2 == 0 and outcome is True) else "p2")
+        # )
+        if verbose and (i + 1) % 2 == 0:
+            print(f"Finished with {i + 1} games in {(time() - t0) / 60:.3f} mins")
+            print(
+                f"Player 1: {results.count('p1')} Tied games: {results.count('tie')}\n"
+            )
+        results.append(winner)
+    if verbose:
+        print(f"Finished in {(time() - t0)/60:.3f} mins")
+    return results

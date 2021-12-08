@@ -4,11 +4,17 @@ from mctchess.players import Player
 
 class Game:
     def __init__(
-        self, player_1: Player, player_2: Player, board: Board, verbose: bool = False
+        self,
+        player_1: Player,
+        player_2: Player,
+        board: Board = None,
+        verbose: bool = False,
     ):
         self.white_player = player_1
         self.black_player = player_2
-        self.board = board
+        self.board = (
+            board if board else Board()
+        )  #  initial position if no speceific board is provided
         self.verbose = verbose
         self.game_history = list()
 
