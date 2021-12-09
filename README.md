@@ -29,12 +29,31 @@ Another alternative execution procedure consists on installing only the requirem
 python -m mctchess.minimax_implementation
 ```
 
-from the parent folder (example for the MiniMax implementation). (Note that this way to execute the scripts may lead to import problems)
+from the parent folder (example for the MiniMax implementation). (Note that this way to execute the scripts may lead to import problems).
+
+The different players are stored in the directory `mctchess.players`. We can use them to play a `Game` as follows:
+
+```python
+from chess import Board
+
+from mctchess.game.game import Game
+from mctchess.players.monte_carlo_player import MCPlayer
+
+p_white = MiniMaxPlayer(depth=2, add_mobility=False, ab_pruning=True)
+p_black = MCPlayer(n_simulations=1000, no_pools=3)
+
+initial_board = Board()
+game = Game(p_white, p_black, board, verbose=False) # Creating the Game object
+game.play_game() # game rollout
+winner = board.outcome().winner # in this case it was False, corresponding to the black player (Monte-Carlo based).
+```
+
+In the `notebooks` directory there are different examples of how to use players and compare their performance.
 
 
-#### TO-DO
+#### Under development
 
-Some interesting things to do in order to upgrade this repo and make more readable could be:
+Some interesting things to do in order to upgrade this repo and make more readable are:
 
 
 - [ ] Put the evaluation arguments inside a method that calls eval function.
@@ -57,22 +76,6 @@ Some interesting things to do in order to upgrade this repo and make more readab
 
 - [X] Parallelize Monte-Carlo evaluation.
 
-- [X] Check that new minimax (with self.minimax) behaves as expected
-
-- [X] Add `Makefile` (wait for tests).
-
-- [X] Add tests.
-
-- [X] Create a `Game` class receiving two `Player` objects and generating a full game (with possibility of interactivity in Lichess).
-
-- [X] Add `setup.py`.
-
 - [X] Test MiniMax implementation.
 
 - [X] Add alpha-beta pruning.
-
-- [X] Create a `Player` abstract class and use it to implement the algos.
-
-- [X] Documentation.
-
-- [X] Implement `RandomPlayer`.

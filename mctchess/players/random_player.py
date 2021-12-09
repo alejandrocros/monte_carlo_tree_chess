@@ -7,6 +7,10 @@ from mctchess.utils.chess_utils import get_random_move
 
 
 class RandomPlayer(Player):
+    """
+    A player with a random-move policy.
+    """
+
     def __init__(self) -> None:
         self.decription = self.describe()
 

@@ -12,7 +12,7 @@ class Player(ABC):
         self.evaluations[board.board_fen()] = value
 
     @abstractmethod
-    def play(board: Board) -> str:
+    def play(self, board: Board) -> str:
         pass
 
     @abstractmethod

@@ -18,30 +18,30 @@ class Game:
         self.verbose = verbose
         self.game_history = list()
 
-    def turn(self):
+    def turn(self) -> bool:
         return self.board.turn
 
-    def compute_next_move(self):
+    def compute_next_move(self) -> str:
         player = self.white_player if self.turn() else self.black_player
         move = player.play(self.board)
         return move
 
-    def save_move_in_history(self, move):
+    def save_move_in_history(self, move: str) -> None:
         self.game_history.append(move)
 
-    def execute_next_move(self):
+    def execute_next_move(self) -> None:
         move = self.compute_next_move()
         self.board.push_san(move)
         self.save_move_in_history(move)
 
-    def is_finished(self):
+    def is_finished(self) -> bool:
         return self.board.is_game_over()
 
-    def play_n_moves(self, no_moves: int):
+    def play_n_moves(self, no_moves: int) -> None:
         for _ in range(no_moves):
             self.execute_next_move()
 
-    def play_game(self):
+    def play_game(self) -> None:
         while not self.is_finished():
             self.execute_next_move()
             if self.verbose and self.board.ply() % 20 == 0:

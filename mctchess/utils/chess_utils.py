@@ -1,5 +1,6 @@
 import random
 from time import time
+from typing import List
 
 from chess import Board
 from mctchess.game.game import Game
@@ -23,7 +24,7 @@ def parse_result(result: str) -> float:
         raise ValueError("Error: result not recognized")
 
 
-def create_board(situation="initial"):
+def create_board(situation: str = "initial") -> Board:
     board = Board()
     if situation == "one_move":
         board = Board(
@@ -48,7 +49,9 @@ def create_board(situation="initial"):
     return board
 
 
-def test_n_games(p1: Player, p2: Player, n_games: int, verbose: bool = False) -> list:
+def test_n_games(
+    p1: Player, p2: Player, n_games: int, verbose: bool = False
+) -> List[str]:
     t0 = time()
     results = list()
     for i in range(n_games):
@@ -66,11 +69,6 @@ def test_n_games(p1: Player, p2: Player, n_games: int, verbose: bool = False) ->
             winner = "p1"
         else:
             winner = "p2"
-        # winner = (
-        #     "tie"
-        #     if outcome is None
-        #     else ("p1" if (i % 2 == 0 and outcome is True) else "p2")
-        # )
         if verbose and (i + 1) % 2 == 0:
             print(f"Finished with {i + 1} games in {(time() - t0) / 60:.3f} mins")
             print(

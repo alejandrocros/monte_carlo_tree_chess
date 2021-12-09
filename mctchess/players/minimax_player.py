@@ -25,8 +25,6 @@ def minimax(evaluation_fn: Callable, board: Board, depth: int = 2) -> Tuple[floa
             final_eval[str(move)] = minimax(evaluation_fn, board, depth - 1)[0]
             board.pop()
 
-        # best_move, best_score = player_function(
-        #    final_eval.items(), key=operator.itemgetter(1))
         best_score = player_function(final_eval.items(), key=operator.itemgetter(1))[1]
         best_moves = [
             k for k, v in final_eval.items() if v == best_score
@@ -89,6 +87,13 @@ def minimax_pruned(
 
 
 class MiniMaxPlayer(Player):
+    """
+    MiniMax Player.
+    :param depth: depth of the search tree
+    :param add_mobility: add the mobility of the pieces to the evaluation function
+    :param ab_pruning: use alpha-beta pruning
+    """
+
     def __init__(
         self, depth: int = 2, add_mobility: bool = False, ab_pruning: bool = True
     ) -> None:
@@ -102,12 +107,10 @@ class MiniMaxPlayer(Player):
     def evaluate(self, board: Board) -> float:
         return self.evaluation_function(board, self.add_mobility)
 
-    def play(self, board: Board, debug: bool = False) -> Union[str, Tuple[float, str]]:
-        best_score, best_move = self.player_logic(
+    def play(self, board: Board) -> str:
+        _, best_move = self.player_logic(
             evaluation_fn=self.evaluate, board=board, depth=self.depth
         )
-        if debug:
-            return best_score, best_move
         return best_move
 
     def describe(self) -> dict:
